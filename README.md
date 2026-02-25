@@ -48,3 +48,13 @@ npm start
 ```
 
 Build estático: a lista do blog e as páginas de post são geradas em tempo de build.
+
+## CI/CD
+
+Antes do deploy, o pipeline deve rodar na ordem:
+
+1. **Lint** — `npm run lint`
+2. **Testes** — `npm run test`
+3. **Build** — `npm run build`
+
+Se qualquer passo falhar, o deploy não deve ser executado.
