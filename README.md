@@ -1,36 +1,50 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Portfolio — Editorial-Tech
 
-## Getting Started
+Portfolio pessoal minimalista (backend/fullstack) com estilo híbrido editorial + tech: Home e Blog (artigos e notas).
 
-First, run the development server:
+## Como rodar
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Abre [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Estrutura
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **Home** (`src/app/page.tsx`): hero (nome, posicionamento, resumo), links, “Foco agora”, CTA para o blog, ilustração.
+- **Blog** (`src/app/blog/`): lista de posts e página de post com Markdown.
+- **Posts**: arquivos `.md` em `content/posts/` com frontmatter (`title`, `date`, `type`, `tags`, `summary`).
 
-## Learn More
+## O que personalizar
 
-To learn more about Next.js, take a look at the following resources:
+1. **Nome e copy da Home** — em `src/app/page.tsx` e, se quiser, em `src/app/layout.tsx` (metadata).
+2. **Links (GitHub, LinkedIn, e-mail, currículo)** — em `src/components/HomeLinks.tsx`. Coloque suas URLs e, se usar currículo em PDF, coloque o arquivo em `public/resume.pdf` (ou altere o href).
+3. **Bullets “Foco agora”** — em `src/components/FocusNow.tsx`.
+4. **Ilustração do hero** — substitua o SVG em `src/components/HeroIllustration.tsx` por sua arte (hand-drawn B&W).
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Novos posts
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Crie um `.md` em `content/posts/` com frontmatter:
 
-## Deploy on Vercel
+```yaml
+---
+title: "Título do post"
+date: "2025-02-20"
+type: article   # ou note
+tags: ["tag1", "tag2"]
+summary: "Resumo em uma ou duas linhas."
+---
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+O corpo é Markdown. O tempo de leitura é calculado automaticamente.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Build
+
+```bash
+npm run build
+npm start
+```
+
+Build estático: a lista do blog e as páginas de post são geradas em tempo de build.
