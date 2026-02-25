@@ -16,6 +16,12 @@ export function Header() {
         >
           Blog
         </Link>
+        <Link
+          href="/projetos"
+          className="text-lg text-[var(--foreground-muted)] hover:text-[var(--accent)] transition-colors"
+        >
+          Projetos
+        </Link>
       </nav>
     </header>
   );

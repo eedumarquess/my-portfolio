@@ -13,11 +13,11 @@ export default function Home() {
           className="font-serif text-4xl font-bold tracking-tight text-[var(--foreground)] md:text-5xl"
           style={{ fontFamily: "var(--font-lora), serif" }}
         >
-          Olá, sou Eduardo Marques!
+          Olá, sou o Edu!
         </h1>
         {/* Linha 2: descrição à esquerda, ícone à direita (ícone ao lado da descrição) */}
         <div className="mt-2 flex flex-col gap-8 md:flex-row md:items-start md:justify-between md:gap-12">
-          <div className="flex max-w-2xl flex-col gap-6">
+          <div className="flex max-w-2xl flex-col gap-6 text-justify md:text-left">
             <p className="text-lg text-[var(--foreground-muted)] md:text-xl">
               Backend engineer focado em automação, workflows e IA aplicada a
               problemas reais.
@@ -28,22 +28,28 @@ export default function Home() {
               com IA e processamento de dados em cenários reais.
             </p>
             <HomeLinks />
-            <div className="pt-2">
+            <div className="flex flex-wrap gap-3 pt-2">
               <Link
                 href="/blog"
-                className="inline-block rounded-full bg-[var(--accent)] px-6 py-3 text-base font-medium text-white hover:bg-[var(--accent-hover)] transition-colors"
+                className="inline-block rounded-full bg-[var(--accent)] px-6 py-3 text-base font-medium text-white transition-colors hover:bg-[var(--accent-hover)]"
               >
                 Ver artigos e notas
               </Link>
+              <Link
+                href="/projetos"
+                className="inline-block rounded-full bg-[var(--accent)] px-6 py-3 text-base font-medium text-white transition-colors hover:bg-[var(--accent-hover)]"
+              >
+                Ver projetos
+              </Link>
             </div>
           </div>
-          <div className="shrink-0 self-start">
+          <div className="relative mx-auto h-[160px] w-[160px] shrink-0 overflow-hidden md:mx-0 md:h-[200px] md:w-[200px]">
             <Image
               src="/hero-avatar.png"
               alt=""
               width={200}
               height={200}
-              className="h-auto w-[160px] md:w-[200px]"
+              className="h-full w-full scale-[1.4] object-cover object-center"
               priority
             />
           </div>
