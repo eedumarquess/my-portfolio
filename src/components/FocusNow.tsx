@@ -1,7 +1,7 @@
 const BULLETS = [
   "Filas, retry e idempotência em sistemas distribuídos",
-  "Pipelines de processamento de documentos e dados",
-  "Integrações com sistemas legados e APIs difíceis",
+  "Pipelines de processamento de documentos e dados utilizando IA",
+  "Integrações com sistemas legados e APIs para automatização",
 ];
 
 export function FocusNow() {
