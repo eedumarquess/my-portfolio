@@ -1,65 +1,63 @@
 import Image from "next/image";
+import Link from "next/link";
+import { HomeLinks } from "@/components/HomeLinks";
+import { FocusNow } from "@/components/FocusNow";
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+    <main>
+      {/* Hero: nome sozinho; descrição + ícone na mesma linha no desktop */}
+      <section className="spacing-hero mx-auto max-w-5xl px-6 md:px-8">
+        {/* Linha 1: só o nome */}
+        <h1
+          className="font-serif text-4xl font-bold tracking-tight text-[var(--foreground)] md:text-5xl"
+          style={{ fontFamily: "var(--font-lora), serif" }}
+        >
+          Olá, sou Eduardo Marques!
+        </h1>
+        {/* Linha 2: descrição à esquerda, ícone à direita (ícone ao lado da descrição) */}
+        <div className="mt-2 flex flex-col gap-8 md:flex-row md:items-start md:justify-between md:gap-12">
+          <div className="flex max-w-2xl flex-col gap-6">
+            <p className="text-lg text-[var(--foreground-muted)] md:text-xl">
+              Backend engineer focado em automação, workflows e IA aplicada a
+              problemas reais.
+            </p>
+            <p className="text-base leading-relaxed text-[var(--foreground)]">
+              Construo serviços e pipelines que transformam processos manuais em
+              sistemas confiáveis. Trabalho com filas, orquestração, integrações
+              com IA e processamento de dados em cenários reais.
+            </p>
+            <HomeLinks />
+            <div className="pt-2">
+              <Link
+                href="/blog"
+                className="inline-block rounded-full bg-[var(--accent)] px-6 py-3 text-base font-medium text-white hover:bg-[var(--accent-hover)] transition-colors"
+              >
+                Ver artigos e notas
+              </Link>
+            </div>
+          </div>
+          <div className="shrink-0 self-start">
             <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
+              src="/hero-avatar.png"
+              alt=""
+              width={200}
+              height={200}
+              className="h-auto w-[160px] md:w-[200px]"
+              priority
             />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+          </div>
         </div>
-      </main>
-    </div>
+      </section>
+
+      {/* Foco agora */}
+      <section className="spacing-section mx-auto max-w-5xl px-6 pb-24 md:px-8">
+        <FocusNow />
+      </section>
+
+      <footer className="border-t border-[#e5e5e5] py-8 text-center text-sm text-[var(--foreground-muted)]">
+        © {new Date().getFullYear()} - Eduardo Marques
+      </footer>
+    </main>
   );
 }
