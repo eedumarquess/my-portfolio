@@ -58,3 +58,5 @@ Antes do deploy, o pipeline deve rodar na ordem:
 3. **Build** — `npm run build`
 
 Se qualquer passo falhar, o deploy não deve ser executado.
+
+a
