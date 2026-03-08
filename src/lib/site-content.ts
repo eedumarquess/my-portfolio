@@ -148,7 +148,7 @@ export const siteCopy: Record<Locale, LocaleCopy> = {
     metadata: {
       title: "Portfolio — Backend engineer",
       description:
-        "Backend engineer focado em automação, workflows e IA aplicada a problemas reais.",
+        "Backend engineer focado em automação, integrações, filas e IA aplicada a fluxos operacionais.",
     },
     navigation: {
       brand: "Edu.",
@@ -165,17 +165,18 @@ export const siteCopy: Record<Locale, LocaleCopy> = {
       ],
     },
     home: {
-      badge: "Backend engineer | automação, integrações e IA aplicada",
+      badge: "Backend engineer | automação, filas, integrações e IA aplicada",
       brand: "Edu.",
-      intro: "Backend engineer para fluxos críticos, automações e sistemas que não podem falhar em silêncio.",
+      intro:
+        "Backend engineer para fluxos críticos com filas, OCR, integrações e fallback quando o processo não pode falhar em silêncio.",
       title:
-        "Transformo operação manual em sistemas confiáveis, auditáveis e escaláveis.",
+        "Construo backends e pipelines que tiram operação manual do caminho.",
       description:
-        "Projeto backends, filas e pipelines que ligam dados, OCR, LLMs e sistemas legados sem perder previsibilidade. O foco é resultado de engenharia: menos gargalo operacional, mais throughput e menos retrabalho.",
+        "Projeto serviços em NestJS, TypeScript e Python para document processing, integrações entre APIs e filas com retry, idempotência e observabilidade. O objetivo é simples: menos triagem manual, mais throughput e uma trilha auditável quando OCR ou LLMs precisam de revisão humana.",
       heroImageAlt: "Retrato de Eduardo Marques.",
-      asideTitle: "Onde costumo gerar valor",
+      asideTitle: "Onde entrego melhor",
       asideBody:
-        "Arquitetura de serviços, automações orientadas a filas, integrações entre APIs e processos de documentos com fallback humano quando a IA precisa de guarda-corpo.",
+        "Arquitetura backend para automações orientadas a filas, integrações com ERP e CRM, e pipelines de documentos com validação, DLQ e revisão humana quando a confiança do modelo cai.",
       linksLabel: "Acessos rápidos",
       primaryCta: {
         label: "Ler artigos sobre automação, backend e IA aplicada",
@@ -187,9 +188,9 @@ export const siteCopy: Record<Locale, LocaleCopy> = {
       },
       metricsEyebrow: "Impacto esperado",
       metricsTitle:
-        "Métricas que importam para operação, produto e contratação.",
+        "Sinais de impacto que importam em backend e automação.",
       metricsDescription:
-        "Os números abaixo resumem o tipo de resultado que eu persigo em projetos de backend, automação e processamento de documentos.",
+        "Esses números resumem o tipo de problema que eu costumo atacar: reduzir trabalho manual, manter rastreabilidade e escalar fluxos assíncronos sem perder controle.",
       metrics: [
         {
           value: "até 70%",
@@ -218,9 +219,9 @@ export const siteCopy: Record<Locale, LocaleCopy> = {
       ],
       stackEyebrow: "Stack de trabalho",
       stackTitle:
-        "Tecnologias que aparecem cedo no projeto, não no rodapé.",
+        "Stack que entra na arquitetura, não só na bio.",
       stackDescription:
-        "Agrupei a stack por contexto para mostrar rapidamente em que tipo de sistema eu atuo com mais frequência.",
+        "Agrupei as ferramentas pelo tipo de sistema em que elas aparecem: backend transacional, mensageria, OCR, integrações e IA aplicada a processo.",
       stackGroups: [
         {
           title: "Backend",
@@ -249,31 +250,31 @@ export const siteCopy: Record<Locale, LocaleCopy> = {
       ],
       focus: {
         eyebrow: "Foco agora",
-        title: "O que estou aprofundando neste momento",
+        title: "O tipo de problema em que estou mais fundo agora",
         description:
-          "Essa seção existe para mostrar o recorte mais atual do meu trabalho, não uma lista genérica de buzzwords.",
+          "É o recorte atual do meu trabalho: sistemas com documento, fila, telemetria e guardrails suficientes para rodar em produção.",
         bullets: [
-          "Pipelines de documentos com OCR, classificação, validação e handoff para revisão humana.",
-          "Arquiteturas com retry, DLQ, idempotência e telemetria para filas que não podem falhar em silêncio.",
-          "Uso de LLMs em processos reais com guardrails, logs de decisão e fallback quando a confiança cai.",
+          "Pipelines de documentos com OCR, classificação, validação e handoff para revisão humana quando a extração não fecha.",
+          "Arquiteturas com retry, DLQ, idempotência e telemetria para filas que sustentam integrações e processamento assíncrono.",
+          "Uso de LLMs em fluxos reais com prompts restritos, logs de decisão e fallback explícito quando a confiança cai.",
         ],
       },
       ctas: [
         {
           eyebrow: "Blog",
-          title: "Artigos com decisões reais de engenharia",
+          title: "Notas de engenharia para backend, filas e automação",
           description:
-            "Escrevo sobre automação, backend, filas, IA aplicada e trade-offs que aparecem quando o sistema sai do slide e entra em operação.",
+            "Escrevo sobre automação, document processing, mensageria, IA aplicada e os trade-offs que aparecem quando o sistema entra em operação.",
           href: "/blog",
-          buttonLabel: "Explorar artigos e notas",
+          buttonLabel: "Ler artigos e notas técnicas",
         },
         {
           eyebrow: "Projetos",
-          title: "Casos com contexto técnico e resultado",
+          title: "Casos com contexto operacional, stack e resultado",
           description:
-            "A página de projetos concentra sistemas, integrações e automações construídas com foco em processo, confiabilidade e impacto operacional.",
+            "A página de projetos reúne sistemas, integrações e automações com contexto de arquitetura, salvaguardas operacionais e impacto no processo.",
           href: "/projetos",
-          buttonLabel: "Abrir projetos publicados",
+          buttonLabel: "Ver projetos publicados",
         },
       ],
       footerNote: "Construído para leitura rápida no desktop e no mobile.",
@@ -335,7 +336,7 @@ export const siteCopy: Record<Locale, LocaleCopy> = {
     metadata: {
       title: "Portfolio — Backend engineer",
       description:
-        "Backend engineer focused on automation, workflows, and AI applied to real problems.",
+        "Backend engineer focused on automation, integrations, queues, and AI applied to operational workflows.",
     },
     navigation: {
       brand: "Edu.",
@@ -352,18 +353,18 @@ export const siteCopy: Record<Locale, LocaleCopy> = {
       ],
     },
     home: {
-      badge: "Backend engineer | automation, integrations, and applied AI",
+      badge: "Backend engineer | automation, queues, integrations, and applied AI",
       brand: "Edu.",
       intro:
-        "Backend engineer for critical flows, automations, and systems that cannot fail silently.",
+        "Backend engineer for critical flows with queues, OCR, integrations, and fallback paths when the process cannot fail silently.",
       title:
-        "I turn manual operations into reliable, auditable, scalable systems.",
+        "I build backends and pipelines that remove manual work from operations.",
       description:
-        "I design backends, queues, and pipelines that connect data, OCR, LLMs, and legacy systems without sacrificing predictability. The goal is engineering output: less operational friction, more throughput, less rework.",
+        "I design NestJS, TypeScript, and Python services for document processing, API integrations, and queue-driven workflows with retry, idempotency, and observability. The goal is straightforward: less manual triage, more throughput, and an audit trail when OCR or LLMs need human review.",
       heroImageAlt: "Portrait of Eduardo Marques.",
-      asideTitle: "Where I usually create leverage",
+      asideTitle: "Where I deliver best",
       asideBody:
-        "Service architecture, queue-driven automations, API integrations, and document workflows with human fallback when AI needs a controlled boundary.",
+        "Backend architecture for queue-driven automation, ERP and CRM integrations, and document pipelines with validation, DLQ, and human review when model confidence drops.",
       linksLabel: "Quick links",
       primaryCta: {
         label: "Read articles on automation, backend, and applied AI",
@@ -374,9 +375,9 @@ export const siteCopy: Record<Locale, LocaleCopy> = {
         href: "/en/projects",
       },
       metricsEyebrow: "Expected impact",
-      metricsTitle: "Metrics that matter to operations, product, and hiring.",
+      metricsTitle: "Impact signals that matter in backend and automation.",
       metricsDescription:
-        "These numbers summarize the kind of outcome I aim for in backend, automation, and document-processing work.",
+        "These numbers summarize the kinds of problems I usually work on: cutting manual work, keeping traceability, and scaling asynchronous flows without losing control.",
       metrics: [
         {
           value: "up to 70%",
@@ -405,9 +406,9 @@ export const siteCopy: Record<Locale, LocaleCopy> = {
       ],
       stackEyebrow: "Working stack",
       stackTitle:
-        "Technologies that show up early in delivery, not only in the footer.",
+        "Stack that shapes the architecture, not just the bio.",
       stackDescription:
-        "The stack is grouped by context so the first screen quickly communicates the kinds of systems I work on.",
+        "The stack is grouped by workload so the first screen quickly shows where I usually operate: transactional backend, messaging, OCR, integrations, and applied AI.",
       stackGroups: [
         {
           title: "Backend",
@@ -436,31 +437,31 @@ export const siteCopy: Record<Locale, LocaleCopy> = {
       ],
       focus: {
         eyebrow: "Current focus",
-        title: "What I am pushing deeper right now",
+        title: "The class of problem I am deepest in right now",
         description:
-          "This section exists to show the current slice of my work, not a generic list of buzzwords.",
+          "This is the current slice of my work: document-heavy systems with queues, telemetry, and enough guardrails to survive production.",
         bullets: [
-          "Document pipelines with OCR, classification, validation, and handoff to human review.",
-          "Architectures with retry, DLQ, idempotency, and telemetry for queues that cannot fail silently.",
-          "LLMs inside real workflows with guardrails, decision logs, and fallback when confidence drops.",
+          "Document pipelines with OCR, classification, validation, and handoff to human review when extraction does not close cleanly.",
+          "Architectures with retry, DLQ, idempotency, and telemetry for queues that support integrations and asynchronous processing.",
+          "LLMs inside real workflows with constrained prompts, decision logs, and explicit fallback when confidence drops.",
         ],
       },
       ctas: [
         {
           eyebrow: "Blog",
-          title: "Engineering notes grounded in real trade-offs",
+          title: "Notes on backend, queues, and automation trade-offs",
           description:
-            "I write about automation, backend systems, queues, applied AI, and the trade-offs that appear once software meets production.",
+            "I write about automation, document processing, messaging, applied AI, and the trade-offs that appear once software reaches production.",
           href: "/en/blog",
-          buttonLabel: "Explore articles and notes",
+          buttonLabel: "Read articles and technical notes",
         },
         {
           eyebrow: "Projects",
-          title: "Cases with technical depth and outcome",
+          title: "Cases with operational context, stack, and outcome",
           description:
-            "The projects page brings together systems, integrations, and automations built with process, reliability, and operational impact in mind.",
+            "The projects page brings together systems, integrations, and automations with architecture context, operational safeguards, and process impact.",
           href: "/en/projects",
-          buttonLabel: "Open published projects",
+          buttonLabel: "View published projects",
         },
       ],
       footerNote: "Built for clean scanning on desktop and mobile.",

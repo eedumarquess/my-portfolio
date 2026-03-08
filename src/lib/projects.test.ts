@@ -27,15 +27,18 @@ describe("getProjectBySlug", () => {
 
     expect(project).not.toBeNull();
     expect(project?.slug).toBe("exemplo");
-    expect(project?.title).toBe("Pipeline de documentos com revisão humana");
-    expect(project?.summary).toContain("Automação de documentos");
+    expect(project?.title).toBe(
+      "Pipeline de documentos com OCR, filas e revisão humana",
+    );
+    expect(project?.summary).toContain("document processing");
     expect(project?.coverImage).toBe("");
     expect(project?.projectType).toBe("Automação backend");
-    expect(project?.outcome).toContain("rastreabilidade");
-    expect(project?.role).toContain("Arquitetura");
+    expect(project?.outcome).toContain("fluxo auditável");
+    expect(project?.role).toContain("Arquitetura backend");
     expect(project?.stack).toContain("NestJS");
-    expect(project?.context).toContain("múltiplos canais");
-    expect(project?.challenge).toContain("Ganhar velocidade");
+    expect(project?.stack).toContain("TypeScript");
+    expect(project?.context).toContain("upload manual");
+    expect(project?.challenge).toContain("OCR");
     expect(project?.links[0]?.kind).toBe("article");
     expect(typeof project?.content).toBe("string");
     expect(project?.content.length).toBeGreaterThan(0);

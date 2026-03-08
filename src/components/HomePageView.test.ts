@@ -10,17 +10,15 @@ describe("HomePageView", () => {
     );
 
     expect(html).toContain(
-      "Transformo operação manual em sistemas confiáveis, auditáveis e escaláveis.",
+      "Construo backends e pipelines que tiram operação manual do caminho.",
     );
     expect(html).toContain(
-      "Backend engineer para fluxos críticos, automações e sistemas que não podem falhar em silêncio.",
+      "Backend engineer para fluxos críticos com filas, OCR, integrações e fallback quando o processo não pode falhar em silêncio.",
     );
     expect(html).toContain(
       "Ler artigos sobre automação, backend e IA aplicada",
     );
-    expect(html).toContain(
-      "Ver casos, sistemas e automações construídas",
-    );
+    expect(html).toContain("Ver casos, sistemas e automações construídas");
     expect(html).toContain("href=\"https://github.com/eedumarquess\"");
     expect(html).toContain(
       "href=\"https://www.linkedin.com/in/eduardo-marquess/\"",
@@ -32,7 +30,7 @@ describe("HomePageView", () => {
     expect(html).toContain("aria-label=\"Email\"");
     expect(html).toContain("target=\"_blank\"");
     expect(html).toContain("rel=\"noopener noreferrer\"");
-    expect(html).toContain("Tecnologias que aparecem cedo no projeto");
+    expect(html).toContain("Stack que entra na arquitetura");
     expect(html).toContain("Foco agora");
     expect(html).toContain("Retrato de Eduardo Marques.");
   });
@@ -43,7 +41,7 @@ describe("HomePageView", () => {
     );
 
     expect(html).toContain(
-      "I turn manual operations into reliable, auditable, scalable systems.",
+      "I build backends and pipelines that remove manual work from operations.",
     );
     expect(html).toContain(
       "Read articles on automation, backend, and applied AI",
@@ -51,7 +49,7 @@ describe("HomePageView", () => {
     expect(html).toContain("See systems, cases, and automations I built");
     expect(html).toContain("href=\"/resume-eduardo-marques-en.pdf\"");
     expect(html).toContain("href=\"/en/projects\"");
-    expect(html).toContain("What I am pushing deeper right now");
+    expect(html).toContain("The class of problem I am deepest in right now");
     expect(html).toContain("Portrait of Eduardo Marques.");
   });
 });

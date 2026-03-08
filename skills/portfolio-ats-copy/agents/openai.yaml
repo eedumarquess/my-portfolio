@@ -1,0 +1,4 @@
+interface:
+  display_name: "Portfolio ATS Copy"
+  short_description: "Sharpen portfolio copy for ATS and clarity."
+  default_prompt: "Rewrite portfolio copy to sound specific, credible, and ATS-friendly without generic AI phrasing."
