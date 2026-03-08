@@ -241,7 +241,7 @@ export const siteCopy: Record<Locale, LocaleCopy> = {
         },
         {
           title: "IA aplicada",
-          items: ["OpenAI", "Claude", "Gemini", "Ollama"],
+          items: ["Claude", "Codex", "Cursor", "Ollama"],
         },
         {
           title: "Infra",
@@ -428,7 +428,7 @@ export const siteCopy: Record<Locale, LocaleCopy> = {
         },
         {
           title: "Applied AI",
-          items: ["OpenAI", "Claude", "Gemini", "Ollama"],
+          items: ["Claude", "Codex", "Cursor", "Ollama"],
         },
         {
           title: "Infra",

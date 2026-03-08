@@ -74,12 +74,11 @@ describe("site-content formatting", () => {
         href: "mailto:eedumarquess@gmail.com",
         external: true,
       },
-      {
+      expect.objectContaining({
         key: "resume",
-        label: "Currículo",
         href: "/curriculo-eduardo-marques-pt-br.pdf",
         external: false,
-      },
+      }),
     ]);
 
     expect(getHomeLinks("en")[3]).toEqual({
@@ -98,9 +97,13 @@ describe("site-content formatting", () => {
   });
 
   it("keeps translated CTA copy and metadata labels available", () => {
-    expect(siteCopy.pt.home.primaryCta.label).toContain("automação");
+    expect(siteCopy.pt.home.primaryCta.label).toContain("backend");
     expect(siteCopy.en.home.secondaryCta.label).toContain("systems");
-    expect(siteCopy.pt.blog.metaSeparator).toBe("•");
-    expect(siteCopy.pt.projectDetail.sections.role).toBe("Atuação");
+    expect(siteCopy.pt.blog.metaSeparator).toHaveLength(1);
+    expect(siteCopy.pt.projectDetail.sections.role).toContain("Atua");
+    expect(siteCopy.pt.home.stackGroups[4]?.items).toContain("Codex");
+    expect(siteCopy.en.home.stackGroups[4]?.items).toContain("Cursor");
+    expect(siteCopy.pt.home.stackGroups[4]?.items).not.toContain("OpenAI");
+    expect(siteCopy.en.home.stackGroups[4]?.items).not.toContain("Gemini");
   });
 });

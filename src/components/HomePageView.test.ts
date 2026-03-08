@@ -31,6 +31,10 @@ describe("HomePageView", () => {
     expect(html).toContain("target=\"_blank\"");
     expect(html).toContain("rel=\"noopener noreferrer\"");
     expect(html).toContain("Stack que entra na arquitetura");
+    expect(html).toContain("Codex");
+    expect(html).toContain("Cursor");
+    expect(html).not.toContain("OpenAI");
+    expect(html).not.toContain("Gemini");
     expect(html).toContain("Foco agora");
     expect(html).toContain("Retrato de Eduardo Marques.");
   });
@@ -49,6 +53,10 @@ describe("HomePageView", () => {
     expect(html).toContain("See systems, cases, and automations I built");
     expect(html).toContain("href=\"/resume-eduardo-marques-en.pdf\"");
     expect(html).toContain("href=\"/en/projects\"");
+    expect(html).toContain("Codex");
+    expect(html).toContain("Cursor");
+    expect(html).not.toContain("OpenAI");
+    expect(html).not.toContain("Gemini");
     expect(html).toContain("The class of problem I am deepest in right now");
     expect(html).toContain("Portrait of Eduardo Marques.");
   });

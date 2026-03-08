@@ -72,7 +72,7 @@ type HomeLinksProps = {
 };
 
 const baseClassName =
-  "interactive-chip inline-flex min-h-12 items-center justify-center gap-3 rounded-full border border-[var(--line)] bg-[var(--card)] px-4 text-[var(--foreground)] hover:-translate-y-0.5 hover:border-[var(--accent)] hover:text-[var(--accent)] focus-visible:border-[var(--accent)] focus-visible:text-[var(--accent)]";
+  "interactive-chip inline-flex min-h-12 items-center justify-center gap-3 rounded-full border border-[var(--line)] bg-[var(--card)] px-4 text-[var(--foreground)] hover:border-[var(--accent)] hover:text-[var(--accent)] hover:shadow-[0_18px_42px_-36px_rgba(15,118,110,0.38)] focus-visible:border-[var(--accent)] focus-visible:text-[var(--accent)] focus-visible:shadow-[0_18px_42px_-36px_rgba(15,118,110,0.38)]";
 
 export function HomeLinks({ locale }: HomeLinksProps) {
   const links = getHomeLinks(locale);
@@ -90,16 +90,12 @@ export function HomeLinks({ locale }: HomeLinksProps) {
               aria-label={label}
             >
               {icons[key]}
-              <span className="hidden text-sm font-medium md:inline">
-                {label}
-              </span>
+              <span className="hidden text-sm font-medium md:inline">{label}</span>
             </a>
           ) : (
             <Link href={href} className={baseClassName} aria-label={label}>
               {icons[key]}
-              <span className="hidden text-sm font-medium md:inline">
-                {label}
-              </span>
+              <span className="hidden text-sm font-medium md:inline">{label}</span>
             </Link>
           )}
         </li>

@@ -91,6 +91,19 @@ button,
     text-decoration-color 160ms ease;
 }
 
+.interactive-elevated {
+  transition:
+    border-color 180ms ease,
+    background-color 180ms ease,
+    box-shadow 220ms ease;
+}
+
+.interactive-elevated:hover,
+.interactive-elevated:focus-visible {
+  border-color: color-mix(in srgb, var(--accent) 44%, var(--line));
+  box-shadow: 0 26px 80px -58px rgba(15, 118, 110, 0.48);
+}
+
 .rich-prose {
   color: var(--foreground);
   line-height: 1.8;
