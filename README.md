@@ -1,6 +1,6 @@
-# Portfolio — Editorial-Tech
+# Portfolio - Editorial Tech
 
-Portfolio pessoal minimalista (backend/fullstack) com estilo híbrido editorial + tech: Home e Blog (artigos e notas).
+Portfolio pessoal com foco editorial-tech para posicionamento de backend, automacao, integracoes e IA aplicada. O projeto usa Next.js com export estatico, home bilingue (PT/EN), blog em Markdown e vitrine de projetos.
 
 ## Como rodar
 
@@ -9,54 +9,77 @@ npm install
 npm run dev
 ```
 
-Abre [http://localhost:3000](http://localhost:3000).
+Aplicacao local: `http://localhost:3000`.
 
-## Estrutura
+## Scripts
 
-- **Home** (`src/app/page.tsx`): hero (nome, posicionamento, resumo), links, “Foco agora”, CTA para o blog, ilustração.
-- **Blog** (`src/app/blog/`): lista de posts e página de post com Markdown.
-- **Posts**: arquivos `.md` em `content/posts/` com frontmatter (`title`, `date`, `type`, `tags`, `summary`).
+```bash
+npm run dev
+npm run lint
+npm run test
+npm run build
+npm start
+```
 
-## O que personalizar
+## Estrutura principal
 
-1. **Nome e copy da Home** — em `src/app/page.tsx` e, se quiser, em `src/app/layout.tsx` (metadata).
-2. **Links (GitHub, LinkedIn, e-mail, currículo)** — em `src/components/HomeLinks.tsx`. Coloque suas URLs e, se usar currículo em PDF, coloque o arquivo em `public/resume.pdf` (ou altere o href).
-3. **Bullets “Foco agora”** — em `src/components/FocusNow.tsx`.
-4. **Ilustração do hero** — substitua o SVG em `src/components/HeroIllustration.tsx` por sua arte (hand-drawn B&W).
+- `src/app/`: rotas PT-BR e rotas espelhadas em `src/app/en`.
+- `src/components/HomePageView.tsx`: home principal com hero, metricas, stacks, Foco Agora e CTAs.
+- `src/components/Header.tsx`: navegacao principal com seletor de idioma.
+- `src/components/HomeLinks.tsx`: badges com GitHub, LinkedIn, email e curriculo localizados.
+- `src/lib/site-content.ts`: dicionario PT/EN, rotas localizadas e links globais.
+- `content/posts/`: posts em Markdown.
+- `content/projects/`: projetos em Markdown.
+- `public/`: assets publicos, incluindo curriculo PT-BR e resume EN.
+- `docs/`: documentacao de implementacao e validacao.
 
-## Novos posts
+## Internacionalizacao
 
-Crie um `.md` em `content/posts/` com frontmatter:
+- PT-BR usa `/`, `/blog` e `/projetos`.
+- EN usa `/en`, `/en/blog` e `/en/projects`.
+- O seletor de idioma preserva a rota equivalente da pagina atual.
+- O link de curriculo acompanha o idioma ativo:
+  - PT: `/curriculo-eduardo-marques-pt-br.pdf`
+  - EN: `/resume-eduardo-marques-en.pdf`
+
+## Conteudo
+
+### Novo post
+
+Crie um arquivo `.md` em `content/posts/` com:
 
 ```yaml
 ---
-title: "Título do post"
+title: "Titulo do post"
 date: "2025-02-20"
-type: article   # ou note
+type: article
 tags: ["tag1", "tag2"]
 summary: "Resumo em uma ou duas linhas."
 ---
 ```
 
-O corpo é Markdown. O tempo de leitura é calculado automaticamente.
+### Novo projeto
 
-## Build
+Crie um arquivo `.md` em `content/projects/` com:
 
-```bash
-npm run build
-npm start
+```yaml
+---
+title: "Nome do projeto"
+summary: "Resumo curto do caso"
+coverImage: "/imagem-opcional.png"
+---
 ```
 
-Build estático: a lista do blog e as páginas de post são geradas em tempo de build.
+## Qualidade
 
-## CI/CD
+Os checks esperados antes de deploy sao:
 
-Antes do deploy, o pipeline deve rodar na ordem:
+1. `npm run lint`
+2. `npm run test`
+3. `npm run build`
 
-1. **Lint** — `npm run lint`
-2. **Testes** — `npm run test`
-3. **Build** — `npm run build`
+## Documentacao
 
-Se qualquer passo falhar, o deploy não deve ser executado.
-
-a
+- `docs/README.md`
+- `docs/todo-implementation.md`
+- `docs/testing-and-validation.md`
