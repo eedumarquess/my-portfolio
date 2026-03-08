@@ -4,11 +4,17 @@ import { describe, expect, it } from "vitest";
 import { HomePageView } from "@/components/HomePageView";
 
 describe("HomePageView", () => {
-  it("renders the portuguese home with updated CTAs and real links", () => {
+  it("renders the portuguese home with the new hero hierarchy and real links", () => {
     const html = renderToStaticMarkup(
       createElement(HomePageView, { locale: "pt" }),
     );
 
+    expect(html).toContain(
+      "Transformo operação manual em sistemas confiáveis, auditáveis e escaláveis.",
+    );
+    expect(html).toContain(
+      "Backend engineer para fluxos críticos, automações e sistemas que não podem falhar em silêncio.",
+    );
     expect(html).toContain(
       "Ler artigos sobre automação, backend e IA aplicada",
     );
@@ -28,6 +34,7 @@ describe("HomePageView", () => {
     expect(html).toContain("rel=\"noopener noreferrer\"");
     expect(html).toContain("Tecnologias que aparecem cedo no projeto");
     expect(html).toContain("Foco agora");
+    expect(html).toContain("Retrato de Eduardo Marques.");
   });
 
   it("renders the english home with localized resume and project route", () => {
@@ -36,11 +43,15 @@ describe("HomePageView", () => {
     );
 
     expect(html).toContain(
+      "I turn manual operations into reliable, auditable, scalable systems.",
+    );
+    expect(html).toContain(
       "Read articles on automation, backend, and applied AI",
     );
     expect(html).toContain("See systems, cases, and automations I built");
     expect(html).toContain("href=\"/resume-eduardo-marques-en.pdf\"");
     expect(html).toContain("href=\"/en/projects\"");
     expect(html).toContain("What I am pushing deeper right now");
+    expect(html).toContain("Portrait of Eduardo Marques.");
   });
 });

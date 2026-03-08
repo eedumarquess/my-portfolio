@@ -8,50 +8,59 @@ type HomePageViewProps = {
   locale: Locale;
 };
 
+const primaryCtaClassName =
+  "interactive-chip inline-flex min-h-12 items-center justify-center rounded-full bg-[var(--accent)] px-6 py-3 text-center text-sm font-semibold text-white hover:bg-[var(--accent-hover)] focus-visible:bg-[var(--accent-hover)] md:text-base";
+
+const secondaryCtaClassName =
+  "interactive-chip inline-flex min-h-12 items-center justify-center rounded-full border border-[var(--line)] bg-[var(--card)] px-6 py-3 text-center text-sm font-semibold text-[var(--foreground)] hover:border-[var(--accent)] hover:text-[var(--accent)] focus-visible:border-[var(--accent)] focus-visible:text-[var(--accent)] md:text-base";
+
 export function HomePageView({ locale }: HomePageViewProps) {
   const content = siteCopy[locale].home;
 
   return (
     <main>
-      <section className="mx-auto max-w-6xl px-6 pb-16 pt-10 md:px-8 md:pb-20 md:pt-20">
-        <div className="grid gap-10 lg:grid-cols-[minmax(0,1.2fr)_minmax(320px,0.8fr)] lg:items-start">
+      <section className="mx-auto max-w-6xl px-6 pb-12 pt-8 md:px-8 md:pb-16 md:pt-14">
+        <div className="grid gap-8 lg:grid-cols-[minmax(0,1.1fr)_minmax(300px,0.78fr)] lg:items-start">
           <div className="max-w-3xl">
             <p className="inline-flex rounded-full border border-[var(--line)] bg-[var(--card)] px-4 py-2 text-xs font-semibold uppercase tracking-[0.24em] text-[var(--accent)] md:text-sm">
               {content.badge}
             </p>
 
-            <div className="mt-6 space-y-5">
+            <div className="mt-5 space-y-4">
+              <p
+                className="font-serif text-3xl font-semibold tracking-[-0.05em] text-[var(--foreground)] md:text-5xl"
+                style={{ fontFamily: "var(--font-lora), serif" }}
+              >
+                {content.brand}
+              </p>
+              <p className="max-w-2xl text-xs font-semibold uppercase tracking-[0.2em] text-[var(--foreground-muted)] md:text-sm">
+                {content.intro}
+              </p>
               <h1
-                className="font-serif text-6xl font-semibold tracking-[-0.04em] text-[var(--foreground)] md:text-8xl"
+                className="max-w-[12ch] font-serif text-4xl font-semibold tracking-[-0.045em] text-[var(--foreground)] md:text-6xl md:leading-[0.98]"
                 style={{ fontFamily: "var(--font-lora), serif" }}
               >
                 {content.title}
               </h1>
-              <p className="max-w-2xl text-3xl leading-tight text-[var(--foreground)] md:text-5xl md:leading-[1.05]">
-                {content.headline}
-              </p>
-              <p className="max-w-2xl text-base leading-8 text-[var(--foreground-muted)] md:text-lg">
+              <p className="max-w-2xl text-base leading-7 text-[var(--foreground-muted)] md:text-lg">
                 {content.description}
               </p>
             </div>
 
-            <div className="mt-8">
+            <div className="mt-7">
               <p className="mb-4 text-sm font-medium uppercase tracking-[0.2em] text-[var(--foreground-muted)]">
                 {content.linksLabel}
               </p>
               <HomeLinks locale={locale} />
             </div>
 
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-              <Link
-                href={content.primaryCta.href}
-                className="inline-flex min-h-12 items-center justify-center rounded-full bg-[var(--accent)] px-6 py-3 text-center text-sm font-semibold text-white transition-colors hover:bg-[var(--accent-hover)] md:text-base"
-              >
+            <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+              <Link href={content.primaryCta.href} className={primaryCtaClassName}>
                 {content.primaryCta.label}
               </Link>
               <Link
                 href={content.secondaryCta.href}
-                className="inline-flex min-h-12 items-center justify-center rounded-full border border-[var(--line)] bg-[var(--card)] px-6 py-3 text-center text-sm font-semibold text-[var(--foreground)] transition-colors hover:border-[var(--accent)] hover:text-[var(--accent)] md:text-base"
+                className={secondaryCtaClassName}
               >
                 {content.secondaryCta.label}
               </Link>
@@ -59,10 +68,10 @@ export function HomePageView({ locale }: HomePageViewProps) {
           </div>
 
           <aside className="rounded-[2rem] border border-[var(--line)] bg-[var(--card)] p-5 shadow-[0_24px_80px_-60px_rgba(15,118,110,0.55)] md:p-6">
-            <div className="relative mx-auto aspect-square w-full max-w-[280px] overflow-hidden rounded-[1.75rem] bg-[var(--surface)]">
+            <div className="relative mx-auto aspect-square w-full max-w-[240px] overflow-hidden rounded-[1.75rem] bg-[var(--surface)] md:max-w-[260px]">
               <Image
                 src="/hero-avatar.png"
-                alt=""
+                alt={content.heroImageAlt}
                 fill
                 priority
                 className="object-cover object-center scale-[1.05]"
@@ -70,7 +79,7 @@ export function HomePageView({ locale }: HomePageViewProps) {
               />
             </div>
 
-            <div className="mt-6 rounded-[1.5rem] bg-[var(--surface)] p-5">
+            <div className="mt-5 rounded-[1.5rem] bg-[var(--surface)] p-5">
               <p className="text-sm font-semibold uppercase tracking-[0.24em] text-[var(--accent)]">
                 {content.asideTitle}
               </p>
@@ -114,6 +123,14 @@ export function HomePageView({ locale }: HomePageViewProps) {
                 <p className="mt-3 text-sm leading-7 text-[var(--foreground-muted)] md:text-base">
                   {metric.description}
                 </p>
+                {metric.href && metric.hrefLabel ? (
+                  <Link
+                    href={metric.href}
+                    className="interactive-link mt-5 inline-flex rounded-xl text-sm font-semibold text-[var(--accent)] hover:text-[var(--accent-hover)] focus-visible:text-[var(--accent-hover)]"
+                  >
+                    {metric.hrefLabel}
+                  </Link>
+                ) : null}
               </article>
             ))}
           </div>
@@ -182,10 +199,7 @@ export function HomePageView({ locale }: HomePageViewProps) {
                 <p className="mt-4 text-base leading-7 text-[var(--foreground-muted)]">
                   {cta.description}
                 </p>
-                <Link
-                  href={cta.href}
-                  className="mt-6 inline-flex min-h-11 items-center rounded-full border border-[var(--line)] bg-[var(--surface)] px-5 py-3 text-sm font-semibold text-[var(--foreground)] transition-colors hover:border-[var(--accent)] hover:text-[var(--accent)] md:text-base"
-                >
+                <Link href={cta.href} className={`${secondaryCtaClassName} mt-6`}>
                   {cta.buttonLabel}
                 </Link>
               </article>

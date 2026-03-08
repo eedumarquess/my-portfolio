@@ -72,7 +72,7 @@ type HomeLinksProps = {
 };
 
 const baseClassName =
-  "inline-flex h-12 w-12 items-center justify-center rounded-full border border-[var(--line)] bg-[var(--card)] text-[var(--foreground)] transition-all hover:-translate-y-0.5 hover:border-[var(--accent)] hover:text-[var(--accent)] focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:ring-offset-2";
+  "interactive-chip inline-flex min-h-12 items-center justify-center gap-3 rounded-full border border-[var(--line)] bg-[var(--card)] px-4 text-[var(--foreground)] hover:-translate-y-0.5 hover:border-[var(--accent)] hover:text-[var(--accent)] focus-visible:border-[var(--accent)] focus-visible:text-[var(--accent)]";
 
 export function HomeLinks({ locale }: HomeLinksProps) {
   const links = getHomeLinks(locale);
@@ -90,10 +90,16 @@ export function HomeLinks({ locale }: HomeLinksProps) {
               aria-label={label}
             >
               {icons[key]}
+              <span className="hidden text-sm font-medium md:inline">
+                {label}
+              </span>
             </a>
           ) : (
             <Link href={href} className={baseClassName} aria-label={label}>
               {icons[key]}
+              <span className="hidden text-sm font-medium md:inline">
+                {label}
+              </span>
             </Link>
           )}
         </li>

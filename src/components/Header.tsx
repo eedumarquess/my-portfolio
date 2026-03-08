@@ -21,7 +21,7 @@ export function Header() {
           <Link
             href={navigation.links[0].href}
             aria-label={navigation.brandAriaLabel}
-            className="font-serif text-2xl font-semibold tracking-[-0.04em] text-[var(--foreground)] transition-colors hover:text-[var(--accent)]"
+            className="interactive-link rounded-xl font-serif text-2xl font-semibold tracking-[-0.04em] text-[var(--foreground)] hover:text-[var(--accent)] focus-visible:text-[var(--accent)]"
             style={{ fontFamily: "var(--font-lora), serif" }}
           >
             {navigation.brand}
@@ -37,10 +37,10 @@ export function Header() {
                   key={option.locale}
                   href={href}
                   aria-label={`${navigation.languageLabel}: ${option.label}`}
-                  className={`rounded-full px-3 py-2 text-xs font-semibold uppercase tracking-[0.2em] transition-colors ${
+                  className={`interactive-chip rounded-full px-3 py-2 text-xs font-semibold uppercase tracking-[0.2em] ${
                     isActive
-                      ? "bg-[var(--accent)] text-white"
-                      : "text-[var(--foreground-muted)] hover:text-[var(--accent)]"
+                      ? "border border-[var(--accent)] bg-[var(--accent)] text-white"
+                      : "text-[var(--foreground-muted)] hover:text-[var(--accent)] focus-visible:text-[var(--accent)]"
                   }`}
                 >
                   {option.shortLabel}
@@ -60,10 +60,10 @@ export function Header() {
                   key={link.href}
                   href={link.href}
                   aria-current={active ? "page" : undefined}
-                  className={`rounded-full px-4 py-2 text-sm font-medium transition-colors md:text-base ${
+                  className={`interactive-chip rounded-full border px-4 py-2 text-sm font-medium md:text-base ${
                     active
-                      ? "bg-[var(--surface)] text-[var(--foreground)]"
-                      : "text-[var(--foreground-muted)] hover:text-[var(--accent)]"
+                      ? "border-[var(--line)] bg-[var(--card)] text-[var(--foreground)]"
+                      : "border-transparent text-[var(--foreground-muted)] hover:border-[var(--line)] hover:text-[var(--accent)] focus-visible:border-[var(--line)] focus-visible:text-[var(--accent)]"
                   }`}
                 >
                   {link.label}
@@ -82,10 +82,10 @@ export function Header() {
                   key={option.locale}
                   href={href}
                   aria-label={`${navigation.languageLabel}: ${option.label}`}
-                  className={`rounded-full px-3 py-2 text-xs font-semibold uppercase tracking-[0.2em] transition-colors ${
+                  className={`interactive-chip rounded-full px-3 py-2 text-xs font-semibold uppercase tracking-[0.2em] ${
                     isActive
-                      ? "bg-[var(--accent)] text-white"
-                      : "text-[var(--foreground-muted)] hover:text-[var(--accent)]"
+                      ? "border border-[var(--accent)] bg-[var(--accent)] text-white"
+                      : "text-[var(--foreground-muted)] hover:text-[var(--accent)] focus-visible:text-[var(--accent)]"
                   }`}
                 >
                   {option.shortLabel}

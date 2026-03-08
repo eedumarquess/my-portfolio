@@ -97,8 +97,10 @@ describe("site-content formatting", () => {
     expect(getReadingTimeLabel("en", 4)).toBe("4 min read");
   });
 
-  it("keeps translated CTA copy available", () => {
+  it("keeps translated CTA copy and metadata labels available", () => {
     expect(siteCopy.pt.home.primaryCta.label).toContain("automação");
     expect(siteCopy.en.home.secondaryCta.label).toContain("systems");
+    expect(siteCopy.pt.blog.metaSeparator).toBe("•");
+    expect(siteCopy.pt.projectDetail.sections.role).toBe("Atuação");
   });
 });

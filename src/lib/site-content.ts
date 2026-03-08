@@ -13,6 +13,8 @@ type HomeMetric = {
   value: string;
   label: string;
   description: string;
+  href?: string;
+  hrefLabel?: string;
 };
 
 type StackGroup = {
@@ -37,9 +39,11 @@ type FocusContent = {
 
 type HomeContent = {
   badge: string;
+  brand: string;
+  intro: string;
   title: string;
-  headline: string;
   description: string;
+  heroImageAlt: string;
   asideTitle: string;
   asideBody: string;
   linksLabel: string;
@@ -70,10 +74,44 @@ type ListingCopy = {
   emptyState: string;
 };
 
+type BlogListingCopy = ListingCopy & {
+  metaSeparator: string;
+  articleLabel: string;
+  noteLabel: string;
+};
+
 type DetailCopy = {
   notFoundTitle: string;
   backLabel: string;
   readingTimeSuffix: string;
+};
+
+type ProjectsListingCopy = ListingCopy & {
+  cardLabels: {
+    stack: string;
+    outcome: string;
+    type: string;
+    noImage: string;
+    openProject: string;
+  };
+};
+
+type ProjectDetailCopy = Omit<DetailCopy, "readingTimeSuffix"> & {
+  summaryLabel: string;
+  sections: {
+    context: string;
+    challenge: string;
+    role: string;
+    stack: string;
+    outcome: string;
+    links: string;
+  };
+  linkLabels: {
+    demo: string;
+    repository: string;
+    article: string;
+    external: string;
+  };
 };
 
 type LocaleCopy = {
@@ -93,10 +131,10 @@ type LocaleCopy = {
     }[];
   };
   home: HomeContent;
-  blog: ListingCopy;
+  blog: BlogListingCopy;
   blogPost: DetailCopy;
-  projects: ListingCopy;
-  projectDetail: Omit<DetailCopy, "readingTimeSuffix">;
+  projects: ProjectsListingCopy;
+  projectDetail: ProjectDetailCopy;
   homeLinks: {
     github: string;
     linkedin: string;
@@ -128,10 +166,13 @@ export const siteCopy: Record<Locale, LocaleCopy> = {
     },
     home: {
       badge: "Backend engineer | automação, integrações e IA aplicada",
-      title: "Edu.",
-      headline: "Transformo operação manual em sistemas confiáveis, auditáveis e escaláveis.",
+      brand: "Edu.",
+      intro: "Backend engineer para fluxos críticos, automações e sistemas que não podem falhar em silêncio.",
+      title:
+        "Transformo operação manual em sistemas confiáveis, auditáveis e escaláveis.",
       description:
         "Projeto backends, filas e pipelines que ligam dados, OCR, LLMs e sistemas legados sem perder previsibilidade. O foco é resultado de engenharia: menos gargalo operacional, mais throughput e menos retrabalho.",
+      heroImageAlt: "Retrato de Eduardo Marques.",
       asideTitle: "Onde costumo gerar valor",
       asideBody:
         "Arquitetura de serviços, automações orientadas a filas, integrações entre APIs e processos de documentos com fallback humano quando a IA precisa de guarda-corpo.",
@@ -145,7 +186,8 @@ export const siteCopy: Record<Locale, LocaleCopy> = {
         href: "/projetos",
       },
       metricsEyebrow: "Impacto esperado",
-      metricsTitle: "Métricas que importam para operação, produto e contratação.",
+      metricsTitle:
+        "Métricas que importam para operação, produto e contratação.",
       metricsDescription:
         "Os números abaixo resumem o tipo de resultado que eu persigo em projetos de backend, automação e processamento de documentos.",
       metrics: [
@@ -154,22 +196,29 @@ export const siteCopy: Record<Locale, LocaleCopy> = {
           label: "menos tempo manual em fluxos de documentos",
           description:
             "Pipelines com OCR, validação e roteamento reduzem espera, triagem e reprocesso operacional.",
+          href: "/blog/trade-off-ferramenta-processamento-documentos",
+          hrefLabel: "Ver nota sobre documentos",
         },
         {
           value: "milhares/dia",
           label: "eventos e documentos processados com segurança",
           description:
             "Fila, idempotência e observabilidade mantêm volume alto sem perder rastreabilidade.",
+          href: "/blog/retry-e-idempotencia-em-filas",
+          hrefLabel: "Ler sobre retry e idempotência",
         },
         {
           value: "6+ integrações",
           label: "sistemas conectados em fluxos únicos",
           description:
             "ERP, CRM, APIs internas e serviços de IA operam em contratos mais previsíveis.",
+          href: "/projetos",
+          hrefLabel: "Explorar projetos",
         },
       ],
       stackEyebrow: "Stack de trabalho",
-      stackTitle: "Tecnologias que aparecem cedo no projeto, não no rodapé.",
+      stackTitle:
+        "Tecnologias que aparecem cedo no projeto, não no rodapé.",
       stackDescription:
         "Agrupei a stack por contexto para mostrar rapidamente em que tipo de sistema eu atuo com mais frequência.",
       stackGroups: [
@@ -231,8 +280,12 @@ export const siteCopy: Record<Locale, LocaleCopy> = {
     },
     blog: {
       title: "Artigos e notas",
-      description: "Textos técnicos e registros de construção sobre automação, filas e sistemas.",
+      description:
+        "Textos técnicos e registros de construção sobre automação, filas e sistemas.",
       emptyState: "Nenhum post ainda.",
+      metaSeparator: "•",
+      articleLabel: "Artigo",
+      noteLabel: "Nota",
     },
     blogPost: {
       notFoundTitle: "Post não encontrado",
@@ -241,12 +294,35 @@ export const siteCopy: Record<Locale, LocaleCopy> = {
     },
     projects: {
       title: "Projetos",
-      description: "Sistemas, automações e integrações com contexto de arquitetura, processo e resultado.",
+      description:
+        "Sistemas, automações e integrações com contexto de arquitetura, processo e resultado.",
       emptyState: "Nenhum projeto cadastrado.",
+      cardLabels: {
+        stack: "Stack",
+        outcome: "Resultado",
+        type: "Tipo",
+        noImage: "Sem imagem",
+        openProject: "Abrir projeto",
+      },
     },
     projectDetail: {
       notFoundTitle: "Projeto não encontrado",
       backLabel: "← Voltar aos projetos",
+      summaryLabel: "Resumo do projeto",
+      sections: {
+        context: "Contexto",
+        challenge: "Problema",
+        role: "Atuação",
+        stack: "Stack",
+        outcome: "Resultado",
+        links: "Links",
+      },
+      linkLabels: {
+        demo: "Abrir demo",
+        repository: "Ver repositório",
+        article: "Ler artigo relacionado",
+        external: "Abrir link",
+      },
     },
     homeLinks: {
       github: "GitHub",
@@ -277,10 +353,14 @@ export const siteCopy: Record<Locale, LocaleCopy> = {
     },
     home: {
       badge: "Backend engineer | automation, integrations, and applied AI",
-      title: "Edu.",
-      headline: "I turn manual operations into reliable, auditable, scalable systems.",
+      brand: "Edu.",
+      intro:
+        "Backend engineer for critical flows, automations, and systems that cannot fail silently.",
+      title:
+        "I turn manual operations into reliable, auditable, scalable systems.",
       description:
         "I design backends, queues, and pipelines that connect data, OCR, LLMs, and legacy systems without sacrificing predictability. The goal is engineering output: less operational friction, more throughput, less rework.",
+      heroImageAlt: "Portrait of Eduardo Marques.",
       asideTitle: "Where I usually create leverage",
       asideBody:
         "Service architecture, queue-driven automations, API integrations, and document workflows with human fallback when AI needs a controlled boundary.",
@@ -303,22 +383,29 @@ export const siteCopy: Record<Locale, LocaleCopy> = {
           label: "less manual time in document-heavy flows",
           description:
             "OCR, validation, and routing pipelines reduce waiting time, triage, and operational rework.",
+          href: "/en/blog/trade-off-ferramenta-processamento-documentos",
+          hrefLabel: "Read the note on document pipelines",
         },
         {
           value: "thousands/day",
           label: "events and documents processed safely",
           description:
             "Queues, idempotency, and observability keep volume high without losing traceability.",
+          href: "/en/blog/retry-e-idempotencia-em-filas",
+          hrefLabel: "Read about retry and idempotency",
         },
         {
           value: "6+ integrations",
           label: "systems connected inside one flow",
           description:
             "ERP, CRM, internal APIs, and AI services run through more predictable contracts.",
+          href: "/en/projects",
+          hrefLabel: "Explore projects",
         },
       ],
       stackEyebrow: "Working stack",
-      stackTitle: "Technologies that show up early in delivery, not only in the footer.",
+      stackTitle:
+        "Technologies that show up early in delivery, not only in the footer.",
       stackDescription:
         "The stack is grouped by context so the first screen quickly communicates the kinds of systems I work on.",
       stackGroups: [
@@ -380,8 +467,12 @@ export const siteCopy: Record<Locale, LocaleCopy> = {
     },
     blog: {
       title: "Articles and notes",
-      description: "Technical writing and build logs about automation, queues, and systems.",
+      description:
+        "Technical writing and build logs about automation, queues, and systems.",
       emptyState: "No posts yet.",
+      metaSeparator: "•",
+      articleLabel: "Article",
+      noteLabel: "Note",
     },
     blogPost: {
       notFoundTitle: "Post not found",
@@ -390,12 +481,35 @@ export const siteCopy: Record<Locale, LocaleCopy> = {
     },
     projects: {
       title: "Projects",
-      description: "Systems, automations, and integrations with architecture, process, and outcome context.",
+      description:
+        "Systems, automations, and integrations with architecture, process, and outcome context.",
       emptyState: "No projects published yet.",
+      cardLabels: {
+        stack: "Stack",
+        outcome: "Outcome",
+        type: "Type",
+        noImage: "No image",
+        openProject: "Open project",
+      },
     },
     projectDetail: {
       notFoundTitle: "Project not found",
       backLabel: "← Back to projects",
+      summaryLabel: "Project summary",
+      sections: {
+        context: "Context",
+        challenge: "Challenge",
+        role: "Role",
+        stack: "Stack",
+        outcome: "Outcome",
+        links: "Links",
+      },
+      linkLabels: {
+        demo: "Open demo",
+        repository: "View repository",
+        article: "Read related article",
+        external: "Open link",
+      },
     },
     homeLinks: {
       github: "GitHub",

@@ -36,23 +36,22 @@ export function BlogIndexPage({ locale }: BlogIndexPageProps) {
             key={post.slug}
             className="border-b border-[var(--line)] pb-10 last:border-0"
           >
-            <Link href={`${blogPath}/${post.slug}`} className="group block">
-              <h2 className="text-xl font-semibold text-[var(--foreground)] transition-colors group-hover:text-[var(--accent)] md:text-2xl">
+            <Link
+              href={`${blogPath}/${post.slug}`}
+              className="interactive-card group block rounded-[1.25rem] px-2 py-2 hover:bg-[color:rgba(255,253,248,0.55)] hover:shadow-[0_18px_50px_-45px_rgba(15,118,110,0.6)] focus-visible:bg-[color:rgba(255,253,248,0.75)]"
+            >
+              <h2 className="text-xl font-semibold text-[var(--foreground)] transition-colors group-hover:text-[var(--accent)] group-focus-visible:text-[var(--accent)] md:text-2xl">
                 {post.title}
               </h2>
               <p className="mt-2 text-sm text-[var(--foreground-muted)]">
                 {formatDateForLocale(locale, post.date)}
                 {post.tags.length > 0 && (
                   <span className="ml-2">
-                    ·{" "}
+                    {copy.metaSeparator}{" "}
                     {[
-                      locale === "pt"
-                        ? post.type === "article"
-                          ? "Artigo"
-                          : "Nota"
-                        : post.type === "article"
-                          ? "Article"
-                          : "Note",
+                      post.type === "article"
+                        ? copy.articleLabel
+                        : copy.noteLabel,
                       ...post.tags,
                     ].join(", ")}
                   </span>
