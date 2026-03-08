@@ -3,10 +3,10 @@ import { BlogIndexPage } from "@/components/pages/BlogIndexPage";
 import { siteCopy } from "@/lib/site-content";
 
 export const metadata: Metadata = {
-  title: "Blog — Artigos e notas",
-  description: siteCopy.pt.blog.description,
+  title: "Blog — Articles and notes",
+  description: siteCopy.en.blog.description,
 };
 
-export default function BlogPage() {
-  return <BlogIndexPage locale="pt" />;
+export default function EnglishBlogPage() {
+  return <BlogIndexPage locale="en" />;
 }

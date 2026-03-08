@@ -58,8 +58,14 @@ export function getAllPosts(): PostMeta[] {
     .map((slug) => {
       const p = getPostBySlug(slug);
       if (!p) return null;
-      const { content: _, readingTimeMinutes: __, ...meta } = p;
-      return meta;
+      return {
+        slug: p.slug,
+        title: p.title,
+        date: p.date,
+        type: p.type,
+        tags: p.tags,
+        summary: p.summary,
+      };
     })
     .filter((p): p is PostMeta => p !== null);
   posts.sort((a, b) => (b.date > a.date ? 1 : -1));

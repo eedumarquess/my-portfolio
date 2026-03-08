@@ -43,8 +43,12 @@ export function getAllProjects(): ProjectMeta[] {
     .map((slug) => {
       const p = getProjectBySlug(slug);
       if (!p) return null;
-      const { content: _, ...meta } = p;
-      return meta;
+      return {
+        slug: p.slug,
+        title: p.title,
+        summary: p.summary,
+        coverImage: p.coverImage,
+      };
     })
     .filter((p): p is ProjectMeta => p !== null);
   return projects;

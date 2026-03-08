@@ -3,10 +3,10 @@ import { ProjectsIndexPage } from "@/components/pages/ProjectsIndexPage";
 import { siteCopy } from "@/lib/site-content";
 
 export const metadata: Metadata = {
-  title: "Projetos",
-  description: siteCopy.pt.projects.description,
+  title: "Projects",
+  description: siteCopy.en.projects.description,
 };
 
-export default function ProjetosPage() {
-  return <ProjectsIndexPage locale="pt" />;
+export default function EnglishProjectsPage() {
+  return <ProjectsIndexPage locale="en" />;
 }

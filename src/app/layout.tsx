@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { DM_Sans, Lora } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/Header";
+import { LocaleDocumentController } from "@/components/LocaleDocumentController";
+import { siteCopy } from "@/lib/site-content";
 
 const dmSans = DM_Sans({
   variable: "--font-dm-sans",
@@ -16,9 +18,8 @@ const lora = Lora({
 });
 
 export const metadata: Metadata = {
-  title: "Portfolio — Backend engineer",
-  description:
-    "Backend engineer focused on automation, workflows, and AI applied to real problems.",
+  title: siteCopy.pt.metadata.title,
+  description: siteCopy.pt.metadata.description,
 };
 
 export default function RootLayout({
@@ -29,6 +30,7 @@ export default function RootLayout({
   return (
     <html lang="pt-BR">
       <body className={`${dmSans.variable} ${lora.variable} antialiased`}>
+        <LocaleDocumentController />
         <Header />
         {children}
       </body>

@@ -1,11 +1,16 @@
 @import "tailwindcss";
 
 :root {
-  --background: #fafaf9;
-  --foreground: #1c1c1c;
-  --foreground-muted: #525252;
-  --accent: #2563eb;
-  --accent-hover: #1d4ed8;
+  --background: #f6f3ee;
+  --surface: #efe8db;
+  --surface-alt: #f3ede4;
+  --card: #fffdf8;
+  --foreground: #18181b;
+  --foreground-muted: #5c564f;
+  --accent: #0f766e;
+  --accent-hover: #115e59;
+  --accent-soft: #d8eee9;
+  --line: #d9d1c5;
 }
 
 @theme inline {
@@ -17,31 +22,24 @@
   --font-serif: var(--font-lora), ui-serif, Georgia, serif;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-  background: var(--background);
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at top left, rgba(15, 118, 110, 0.08), transparent 32%),
+    linear-gradient(180deg, #faf8f3 0%, var(--background) 28%, #f4efe6 100%);
   color: var(--foreground);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
 }
 
-/* Article body: comfortable line length */
+::selection {
+  background: rgba(15, 118, 110, 0.18);
+}
+
 .prose-width {
   max-width: 42rem;
-}
-
-/* Spacing rhythm: 8px base (8, 16, 24, 32, 48, 64, 96) */
-.spacing-section {
-  gap: 3rem; /* 48px */
-}
-
-.spacing-hero {
-  padding-top: 4rem;   /* 64px */
-  padding-bottom: 4rem;
-}
-
-@media (min-width: 768px) {
-  .spacing-hero {
-    padding-top: 6rem;   /* 96px */
-    padding-bottom: 6rem;
-  }
 }

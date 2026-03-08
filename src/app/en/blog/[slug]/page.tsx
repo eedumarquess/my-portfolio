@@ -13,7 +13,7 @@ export async function generateMetadata({
   const post = getPostBySlug(slug);
 
   if (!post) {
-    return { title: siteCopy.pt.blogPost.notFoundTitle };
+    return { title: siteCopy.en.blogPost.notFoundTitle };
   }
 
   return {
@@ -26,7 +26,7 @@ export function generateStaticParams() {
   return getPostSlugs().map((slug) => ({ slug }));
 }
 
-export default async function PostPage({
+export default async function EnglishPostPage({
   params,
 }: {
   params: Promise<{ slug: string }>;
@@ -38,5 +38,5 @@ export default async function PostPage({
     notFound();
   }
 
-  return <PostDetailPage locale="pt" post={post} />;
+  return <PostDetailPage locale="en" post={post} />;
 }

@@ -13,11 +13,11 @@ export async function generateMetadata({
   const project = getProjectBySlug(slug);
 
   if (!project) {
-    return { title: siteCopy.pt.projectDetail.notFoundTitle };
+    return { title: siteCopy.en.projectDetail.notFoundTitle };
   }
 
   return {
-    title: `${project.title} — Projetos`,
+    title: `${project.title} — Projects`,
     description: project.summary || undefined,
   };
 }
@@ -26,7 +26,7 @@ export function generateStaticParams() {
   return getProjectSlugs().map((slug) => ({ slug }));
 }
 
-export default async function ProjectPage({
+export default async function EnglishProjectPage({
   params,
 }: {
   params: Promise<{ slug: string }>;
@@ -38,5 +38,5 @@ export default async function ProjectPage({
     notFound();
   }
 
-  return <ProjectDetailPage locale="pt" project={project} />;
+  return <ProjectDetailPage locale="en" project={project} />;
 }
