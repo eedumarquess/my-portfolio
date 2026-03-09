@@ -3,6 +3,7 @@ import Link from "next/link";
 import type { CSSProperties, ReactNode } from "react";
 import { FocusNow } from "@/components/FocusNow";
 import { HomeLinks } from "@/components/HomeLinks";
+import heroAvatar from "@/hero-avatar.png";
 import { siteCopy, type Locale } from "@/lib/site-content";
 
 type HomePageViewProps = {
@@ -394,7 +395,7 @@ export function HomePageView({ locale }: HomePageViewProps) {
                 >
                   <div className="relative mx-auto aspect-square w-full max-w-[240px] overflow-hidden rounded-[1.4rem] bg-[#ededed] md:max-w-[260px]">
                     <Image
-                      src="/hero-avatar.png"
+                      src={heroAvatar}
                       alt={content.heroImageAlt}
                       fill
                       priority
