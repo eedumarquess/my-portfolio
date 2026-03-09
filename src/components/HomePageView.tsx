@@ -287,28 +287,35 @@ export function HomePageView({ locale }: HomePageViewProps) {
             </div>
           </div>
 
-          <div className="space-y-5">
-            <MacWindowCard title="avatar.png" bodyClassName="px-5 pb-5 pt-3 md:px-6 md:pb-6">
-              <div className="relative mx-auto aspect-square w-full max-w-[240px] overflow-hidden rounded-[1.4rem] bg-[#ededed] md:max-w-[260px]">
-                <Image
-                  src="/hero-avatar.png"
-                  alt={content.heroImageAlt}
-                  fill
-                  priority
-                  className="object-cover object-center scale-[1.05]"
-                  sizes="(max-width: 1024px) 280px, 360px"
-                />
-              </div>
-            </MacWindowCard>
+          <div className="relative flex flex-col gap-5 md:min-h-[38rem] md:block">
+            <div className="md:absolute md:left-0 md:top-0 md:w-[78%]">
+              <MacWindowCard
+                title="avatar.png"
+                bodyClassName="px-5 pb-5 pt-3 md:px-6 md:pb-6"
+              >
+                <div className="relative mx-auto aspect-square w-full max-w-[240px] overflow-hidden rounded-[1.4rem] bg-[#ededed] md:max-w-[260px]">
+                  <Image
+                    src="/hero-avatar.png"
+                    alt={content.heroImageAlt}
+                    fill
+                    priority
+                    className="object-cover object-center scale-[1.05]"
+                    sizes="(max-width: 768px) 280px, (max-width: 1280px) 320px, 360px"
+                  />
+                </div>
+              </MacWindowCard>
+            </div>
 
-            <MacWindowCard
-              title={content.asideTitle}
-              bodyClassName="px-5 pb-5 pt-3 md:px-6 md:pb-6"
-            >
-              <p className="text-sm leading-7 text-[var(--foreground-muted)] md:text-base">
-                {content.asideBody}
-              </p>
-            </MacWindowCard>
+            <div className="md:absolute md:bottom-0 md:right-0 md:z-10 md:w-[62%]">
+              <MacWindowCard
+                title={content.asideTitle}
+                bodyClassName="px-5 pb-5 pt-3 md:px-6 md:pb-6"
+              >
+                <p className="text-sm leading-7 text-[var(--foreground-muted)] md:text-base">
+                  {content.asideBody}
+                </p>
+              </MacWindowCard>
+            </div>
           </div>
         </div>
       </section>
