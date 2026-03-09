@@ -10,7 +10,7 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const project = getProjectBySlug(slug);
+  const project = getProjectBySlug(slug, "en");
 
   if (!project) {
     return { title: siteCopy.en.projectDetail.notFoundTitle };
@@ -23,7 +23,7 @@ export async function generateMetadata({
 }
 
 export function generateStaticParams() {
-  return getProjectSlugs().map((slug) => ({ slug }));
+  return getProjectSlugs("en").map((slug) => ({ slug }));
 }
 
 export default async function EnglishProjectPage({
@@ -32,7 +32,7 @@ export default async function EnglishProjectPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const project = getProjectBySlug(slug);
+  const project = getProjectBySlug(slug, "en");
 
   if (!project) {
     notFound();

@@ -12,7 +12,7 @@ type BlogIndexPageProps = {
 };
 
 export function BlogIndexPage({ locale }: BlogIndexPageProps) {
-  const posts = getAllPosts();
+  const posts = getAllPosts(locale);
   const copy = siteCopy[locale].blog;
   const blogPath = getSectionPath("blog", locale);
 

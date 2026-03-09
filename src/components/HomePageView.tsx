@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import type { ReactNode } from "react";
+import type { CSSProperties, ReactNode } from "react";
 import { FocusNow } from "@/components/FocusNow";
 import { HomeLinks } from "@/components/HomeLinks";
 import { siteCopy, type Locale } from "@/lib/site-content";
@@ -18,17 +18,28 @@ const secondaryCtaClassName =
 const macWindowClassName =
   "interactive-elevated overflow-hidden rounded-[1.35rem] border border-black/10 bg-white shadow-[0_24px_60px_-40px_rgba(15,23,42,0.32)]";
 
+const terminalPreviewQuestions = [
+  "where did the clean signal go?",
+  "who touched the queue at 03:17?",
+  "why is the cache dreaming again?",
+  "which service swallowed the logs?",
+  "can silence be retried safely?",
+  "what woke the ghost process now?",
+];
+
 function MacWindowCard({
   title,
   children,
   bodyClassName,
+  floatClassName,
 }: {
   title: string;
   children: ReactNode;
   bodyClassName?: string;
+  floatClassName?: string;
 }) {
   return (
-    <div className={macWindowClassName}>
+    <div className={`${macWindowClassName} ${floatClassName ?? ""}`.trim()}>
       <div className="grid grid-cols-[auto_1fr_auto] items-center bg-[#d8d8d8] px-3 py-2.5">
         <div className="flex items-center gap-2">
           <span className="h-3.5 w-3.5 rounded-full bg-[#ed6a5f]" aria-hidden="true" />
@@ -39,6 +50,52 @@ function MacWindowCard({
         <span aria-hidden="true" className="block w-[58px]" />
       </div>
       <div className={`bg-white ${bodyClassName ?? ""}`.trim()}>{children}</div>
+    </div>
+  );
+}
+
+function TerminalPreview() {
+  const questionSlotSeconds = 4.6;
+  const questionCycleSeconds = terminalPreviewQuestions.length * questionSlotSeconds;
+
+  return (
+    <div className="terminal-preview h-full px-4 py-4 font-mono md:px-5 md:py-5">
+      <div className="terminal-grid" aria-hidden="true" />
+      <div
+        className="terminal-question-stage relative z-10 h-full overflow-hidden pt-7 text-[11px] leading-5 text-[#54ff7a] md:pt-8 md:text-xs"
+        style={
+          {
+            "--cycle-duration": `${questionCycleSeconds}s`,
+          } as CSSProperties
+        }
+      >
+        {terminalPreviewQuestions.map((line, index) => (
+          <div
+            key={line}
+            className="terminal-question-row absolute left-0 right-0 top-0 flex items-start gap-3"
+            style={
+              {
+                "--question-delay": `${index * questionSlotSeconds}s`,
+              } as CSSProperties
+            }
+          >
+            <span className="terminal-prompt shrink-0 text-[#2aff66]">
+              eduardo@portfolio:~$
+            </span>
+            <span
+              className="terminal-typing"
+              style={
+                {
+                  "--characters": line.length,
+                  "--typing-delay": `${index * questionSlotSeconds}s`,
+                } as CSSProperties
+              }
+            >
+              {line}
+            </span>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
@@ -165,6 +222,52 @@ function StackGlyph({ item }: { item: string }) {
     );
   }
 
+  if (item === "RAG") {
+    return (
+      <svg viewBox="0 0 24 24" aria-hidden="true" className="h-4 w-4">
+        <path
+          d="M6.5 8.5h6M6.5 12h8M6.5 15.5h5"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.8"
+          strokeLinecap="round"
+        />
+        <path
+          d="M14.5 6.5h3a2 2 0 0 1 2 2v7"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.8"
+          strokeLinecap="round"
+        />
+        <path
+          d="M16.5 17.5 19.5 15l3 2.5"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.8"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </svg>
+    );
+  }
+
+  if (item === "Agentes" || item === "Agents") {
+    return (
+      <svg viewBox="0 0 24 24" aria-hidden="true" className="h-4 w-4">
+        <circle cx="7" cy="8" r="2.25" fill="none" stroke="currentColor" strokeWidth="1.8" />
+        <circle cx="17" cy="8" r="2.25" fill="none" stroke="currentColor" strokeWidth="1.8" />
+        <circle cx="12" cy="16" r="2.25" fill="none" stroke="currentColor" strokeWidth="1.8" />
+        <path
+          d="M9 9.5 10.8 13M15 9.5 13.2 13M9.4 8h5.2"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.8"
+          strokeLinecap="round"
+        />
+      </svg>
+    );
+  }
+
   if (item === "Claude") {
     return (
       <Image
@@ -244,25 +347,19 @@ export function HomePageView({ locale }: HomePageViewProps) {
   return (
     <main>
       <section className="mx-auto max-w-6xl px-6 pb-12 pt-8 md:px-8 md:pb-16 md:pt-14">
-        <div className="grid gap-8 lg:grid-cols-[minmax(0,1.1fr)_minmax(300px,0.78fr)] lg:items-start">
-          <div className="max-w-3xl">
+        <div className="grid gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(300px,0.78fr)] lg:items-start">
+          <div className="min-w-0">
             <div className="space-y-4">
-              <p
-                className="font-serif text-3xl font-semibold tracking-[-0.05em] text-[var(--foreground)] md:text-5xl"
-                style={{ fontFamily: "var(--font-lora), serif" }}
-              >
-                {content.brand}
-              </p>
-              <p className="max-w-2xl text-xs font-semibold uppercase tracking-[0.2em] text-[var(--foreground-muted)] md:text-sm">
-                {content.intro}
-              </p>
               <h1
-                className="max-w-[12ch] font-serif text-4xl font-semibold tracking-[-0.045em] text-[var(--foreground)] md:text-6xl md:leading-[0.98]"
+                className="w-full font-serif text-4xl font-semibold tracking-[-0.045em] text-[var(--foreground)] md:text-6xl md:leading-[0.98]"
                 style={{ fontFamily: "var(--font-lora), serif" }}
               >
                 {content.title}
               </h1>
-              <p className="max-w-2xl text-base leading-7 text-[var(--foreground-muted)] md:text-lg">
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--foreground-muted)] md:text-sm">
+                {content.intro}
+              </p>
+              <p className="text-base leading-7 text-[var(--foreground-muted)] md:text-lg">
                 {content.description}
               </p>
             </div>
@@ -287,33 +384,47 @@ export function HomePageView({ locale }: HomePageViewProps) {
             </div>
           </div>
 
-          <div className="relative flex flex-col gap-5 md:min-h-[38rem] md:block">
-            <div className="md:absolute md:left-0 md:top-0 md:w-[78%]">
-              <MacWindowCard
-                title="avatar.png"
-                bodyClassName="px-5 pb-5 pt-3 md:px-6 md:pb-6"
-              >
-                <div className="relative mx-auto aspect-square w-full max-w-[240px] overflow-hidden rounded-[1.4rem] bg-[#ededed] md:max-w-[260px]">
-                  <Image
-                    src="/hero-avatar.png"
-                    alt={content.heroImageAlt}
-                    fill
-                    priority
-                    className="object-cover object-center scale-[1.05]"
-                    sizes="(max-width: 768px) 280px, (max-width: 1280px) 320px, 360px"
-                  />
-                </div>
-              </MacWindowCard>
+          <div className="flex flex-col gap-5">
+            <div className="relative flex flex-col gap-5 md:min-h-[38rem] md:block">
+              <div className="md:absolute md:left-0 md:top-0 md:w-[78%]">
+                <MacWindowCard
+                  title="avatar.png"
+                  floatClassName="mac-window-float-a"
+                  bodyClassName="px-5 pb-5 pt-3 md:px-6 md:pb-6"
+                >
+                  <div className="relative mx-auto aspect-square w-full max-w-[240px] overflow-hidden rounded-[1.4rem] bg-[#ededed] md:max-w-[260px]">
+                    <Image
+                      src="/hero-avatar.png"
+                      alt={content.heroImageAlt}
+                      fill
+                      priority
+                      className="object-cover object-center scale-[1.05]"
+                      sizes="(max-width: 768px) 280px, (max-width: 1280px) 320px, 360px"
+                    />
+                  </div>
+                </MacWindowCard>
+              </div>
+
+              <div className="md:absolute md:bottom-0 md:right-0 md:z-10 md:w-[62%]">
+                <MacWindowCard
+                  title={content.asideTitle}
+                  floatClassName="mac-window-float-b"
+                  bodyClassName="px-5 pb-5 pt-3 md:px-6 md:pb-6"
+                >
+                  <p className="text-sm leading-7 text-[var(--foreground-muted)] md:text-base">
+                    {content.asideBody}
+                  </p>
+                </MacWindowCard>
+              </div>
             </div>
 
-            <div className="md:absolute md:bottom-0 md:right-0 md:z-10 md:w-[62%]">
+            <div className="md:relative md:-mt-12 md:z-0">
               <MacWindowCard
-                title={content.asideTitle}
-                bodyClassName="px-5 pb-5 pt-3 md:px-6 md:pb-6"
+                title="terminal.sh"
+                floatClassName="mac-window-float-c"
+                bodyClassName="h-64 bg-black md:h-72"
               >
-                <p className="text-sm leading-7 text-[var(--foreground-muted)] md:text-base">
-                  {content.asideBody}
-                </p>
+                <TerminalPreview />
               </MacWindowCard>
             </div>
           </div>
@@ -341,7 +452,7 @@ export function HomePageView({ locale }: HomePageViewProps) {
             {content.stackGroups.map((group) => (
               <article
                 key={group.title}
-                className="interactive-elevated rounded-[1.75rem] border border-[var(--line)] bg-[var(--background)] p-5"
+                className="rounded-[1.75rem] border border-[var(--line)] bg-[var(--background)] p-5"
               >
                 <h3 className="text-lg font-semibold text-[var(--foreground)]">
                   {group.title}
@@ -350,15 +461,15 @@ export function HomePageView({ locale }: HomePageViewProps) {
                   {group.items.map((item) => (
                     <span
                       key={item}
-                      className="inline-flex items-center gap-2 rounded-full border border-[var(--line)] bg-white py-2 pl-3 pr-2 text-sm text-[var(--foreground)] shadow-[0_8px_24px_-22px_rgba(24,24,27,0.35)]"
+                      className="inline-flex items-center gap-2 rounded-full border border-[var(--line)] bg-white py-2 pl-2 pr-3 text-sm text-[var(--foreground)] shadow-[0_8px_24px_-22px_rgba(24,24,27,0.35)]"
                     >
-                      <span>{item}</span>
                       <span
                         aria-hidden="true"
                         className="inline-flex h-6 min-w-6 items-center justify-center rounded-full bg-[var(--accent-soft)] px-1.5 text-[var(--accent-strong)]"
                       >
                         <StackGlyph item={item} />
                       </span>
+                      <span>{item}</span>
                     </span>
                   ))}
                 </div>
@@ -376,7 +487,7 @@ export function HomePageView({ locale }: HomePageViewProps) {
             {content.ctas.map((cta) => (
               <article
                 key={cta.title}
-                className="interactive-elevated rounded-[1.75rem] border border-[var(--line)] bg-[var(--card)] p-6"
+                className="rounded-[1.75rem] border border-[var(--line)] bg-[var(--card)] p-6"
               >
                 <p className="text-sm font-semibold uppercase tracking-[0.24em] text-[var(--accent)]">
                   {cta.eyebrow}

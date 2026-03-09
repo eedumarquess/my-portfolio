@@ -196,17 +196,17 @@ export const siteCopy: Record<Locale, LocaleCopy> = {
           value: "até 70%",
           label: "menos tempo manual em fluxos de documentos",
           description:
-            "Pipelines com OCR, validação e roteamento reduzem espera, triagem e reprocesso operacional.",
-          href: "/blog/trade-off-ferramenta-processamento-documentos",
-          hrefLabel: "Ver nota sobre documentos",
+            "OCR com âncoras, validação e roteamento reduz espera, triagem e reprocesso operacional.",
+          href: "/blog/ocr-ancoras-rois-relativas",
+          hrefLabel: "Ver artigo sobre OCR aplicado",
         },
         {
           value: "milhares/dia",
           label: "eventos e documentos processados com segurança",
           description:
             "Fila, idempotência e observabilidade mantêm volume alto sem perder rastreabilidade.",
-          href: "/blog/retry-e-idempotencia-em-filas",
-          hrefLabel: "Ler sobre retry e idempotência",
+          href: "/blog/trade-offs-ingestao-assincrona-documentos",
+          hrefLabel: "Ler sobre ingestão assíncrona",
         },
         {
           value: "6+ integrações",
@@ -221,7 +221,7 @@ export const siteCopy: Record<Locale, LocaleCopy> = {
       stackTitle:
         "Stack que entra na arquitetura, não só na bio.",
       stackDescription:
-        "Agrupei as ferramentas pelo tipo de sistema em que elas aparecem: backend transacional, mensageria, OCR, integrações e IA aplicada a processo.",
+        "Agrupei as ferramentas pelo tipo de sistema em que elas aparecem: backend transacional, mensageria, OCR, integrações e IA aplicada com RAG e agentes.",
       stackGroups: [
         {
           title: "Backend",
@@ -241,7 +241,7 @@ export const siteCopy: Record<Locale, LocaleCopy> = {
         },
         {
           title: "IA aplicada",
-          items: ["Claude", "Codex", "Cursor", "Ollama"],
+          items: ["RAG", "Agentes", "Claude", "Codex", "Cursor", "Ollama"],
         },
         {
           title: "Infra",
@@ -256,7 +256,7 @@ export const siteCopy: Record<Locale, LocaleCopy> = {
         bullets: [
           "Pipelines de documentos com OCR, classificação, validação e handoff para revisão humana quando a extração não fecha.",
           "Arquiteturas com retry, DLQ, idempotência e telemetria para filas que sustentam integrações e processamento assíncrono.",
-          "Uso de LLMs em fluxos reais com prompts restritos, logs de decisão e fallback explícito quando a confiança cai.",
+          "Uso de LLMs, RAG e agentes em fluxos reais com prompts restritos, logs de decisão e fallback explícito quando a confiança cai.",
         ],
       },
       ctas: [
@@ -282,7 +282,7 @@ export const siteCopy: Record<Locale, LocaleCopy> = {
     blog: {
       title: "Artigos e notas",
       description:
-        "Textos técnicos e registros de construção sobre automação, filas e sistemas.",
+        "Textos técnicos sobre backend, automação, document processing, OCR, filas e IA aplicada.",
       emptyState: "Nenhum post ainda.",
       metaSeparator: "•",
       articleLabel: "Artigo",
@@ -296,7 +296,7 @@ export const siteCopy: Record<Locale, LocaleCopy> = {
     projects: {
       title: "Projetos",
       description:
-        "Sistemas, automações e integrações com contexto de arquitetura, processo e resultado.",
+        "Backends, automações, OCR, RAG e integrações com contexto de arquitetura, processo e resultado.",
       emptyState: "Nenhum projeto cadastrado.",
       cardLabels: {
         stack: "Stack",
@@ -383,17 +383,17 @@ export const siteCopy: Record<Locale, LocaleCopy> = {
           value: "up to 70%",
           label: "less manual time in document-heavy flows",
           description:
-            "OCR, validation, and routing pipelines reduce waiting time, triage, and operational rework.",
-          href: "/en/blog/trade-off-ferramenta-processamento-documentos",
-          hrefLabel: "Read the note on document pipelines",
+            "OCR with anchors, validation, and routing reduces waiting time, triage, and operational rework.",
+          href: "/en/blog/ocr-ancoras-rois-relativas",
+          hrefLabel: "Read the applied OCR article",
         },
         {
           value: "thousands/day",
           label: "events and documents processed safely",
           description:
             "Queues, idempotency, and observability keep volume high without losing traceability.",
-          href: "/en/blog/retry-e-idempotencia-em-filas",
-          hrefLabel: "Read about retry and idempotency",
+          href: "/en/blog/trade-offs-ingestao-assincrona-documentos",
+          hrefLabel: "Read about asynchronous ingestion",
         },
         {
           value: "6+ integrations",
@@ -408,7 +408,7 @@ export const siteCopy: Record<Locale, LocaleCopy> = {
       stackTitle:
         "Stack that shapes the architecture, not just the bio.",
       stackDescription:
-        "The stack is grouped by workload so the first screen quickly shows where I usually operate: transactional backend, messaging, OCR, integrations, and applied AI.",
+        "The stack is grouped by workload so the first screen quickly shows where I usually operate: transactional backend, messaging, OCR, integrations, and applied AI with RAG and agents.",
       stackGroups: [
         {
           title: "Backend",
@@ -428,7 +428,7 @@ export const siteCopy: Record<Locale, LocaleCopy> = {
         },
         {
           title: "Applied AI",
-          items: ["Claude", "Codex", "Cursor", "Ollama"],
+          items: ["RAG", "Agents", "Claude", "Codex", "Cursor", "Ollama"],
         },
         {
           title: "Infra",
@@ -443,7 +443,7 @@ export const siteCopy: Record<Locale, LocaleCopy> = {
         bullets: [
           "Document pipelines with OCR, classification, validation, and handoff to human review when extraction does not close cleanly.",
           "Architectures with retry, DLQ, idempotency, and telemetry for queues that support integrations and asynchronous processing.",
-          "LLMs inside real workflows with constrained prompts, decision logs, and explicit fallback when confidence drops.",
+          "LLMs, RAG, and agents inside real workflows with constrained prompts, decision logs, and explicit fallback when confidence drops.",
         ],
       },
       ctas: [
@@ -469,7 +469,7 @@ export const siteCopy: Record<Locale, LocaleCopy> = {
     blog: {
       title: "Articles and notes",
       description:
-        "Technical writing and build logs about automation, queues, and systems.",
+        "Technical writing on backend, automation, document processing, OCR, queues, and applied AI.",
       emptyState: "No posts yet.",
       metaSeparator: "•",
       articleLabel: "Article",
@@ -483,7 +483,7 @@ export const siteCopy: Record<Locale, LocaleCopy> = {
     projects: {
       title: "Projects",
       description:
-        "Systems, automations, and integrations with architecture, process, and outcome context.",
+        "Backends, automations, OCR, RAG, and integrations with architecture, process, and outcome context.",
       emptyState: "No projects published yet.",
       cardLabels: {
         stack: "Stack",
@@ -611,11 +611,16 @@ export function isCurrentPath(pathname: string, href: string): boolean {
 }
 
 export function formatDateForLocale(locale: Locale, date: string): string {
+  const parsedDate = new Date(date);
+  if (Number.isNaN(parsedDate.getTime())) {
+    return "";
+  }
+
   return new Intl.DateTimeFormat(locale === "pt" ? "pt-BR" : "en-US", {
     day: "numeric",
     month: "long",
     year: "numeric",
-  }).format(new Date(date));
+  }).format(parsedDate);
 }
 
 export function getReadingTimeLabel(locale: Locale, minutes: number): string {

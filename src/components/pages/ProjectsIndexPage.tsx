@@ -8,7 +8,7 @@ type ProjectsIndexPageProps = {
 };
 
 export function ProjectsIndexPage({ locale }: ProjectsIndexPageProps) {
-  const projects = getAllProjects();
+  const projects = getAllProjects(locale);
   const copy = siteCopy[locale].projects;
   const projectsPath = getSectionPath("projects", locale);
 
@@ -53,12 +53,12 @@ export function ProjectsIndexPage({ locale }: ProjectsIndexPageProps) {
                 <div className="p-6">
                   <div className="flex flex-wrap gap-2">
                     {project.projectType ? (
-                      <span className="rounded-full border border-[var(--line)] bg-[var(--surface)] px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-[var(--foreground-muted)]">
+                      <span className="rounded-2xl border border-[var(--line)] bg-[var(--surface)] px-6 py-4 text-xs font-semibold uppercase tracking-[0.16em] text-[var(--foreground-muted)]">
                         {copy.cardLabels.type}: {project.projectType}
                       </span>
                     ) : null}
                     {project.role ? (
-                      <span className="rounded-full border border-[var(--line)] bg-[var(--surface)] px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-[var(--foreground-muted)]">
+                      <span className="rounded-2xl border border-[var(--line)] bg-[var(--surface)] px-6 py-4 text-xs font-semibold uppercase tracking-[0.16em] text-[var(--foreground-muted)]">
                         {project.role}
                       </span>
                     ) : null}

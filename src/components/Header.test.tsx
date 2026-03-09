@@ -16,11 +16,11 @@ describe("Header", () => {
   });
 
   it("keeps the localized detail path when switching from portuguese to english", () => {
-    mockPathname = "/projetos/exemplo";
+    mockPathname = "/projetos/ai-content-engine";
 
     const html = renderToStaticMarkup(createElement(Header));
 
-    expect(html).toContain("href=\"/en/projects/exemplo\"");
+    expect(html).toContain("href=\"/en/projects/ai-content-engine\"");
     expect(html).toContain("href=\"/projetos\"");
     expect(html).toContain("Projetos");
     expect(html).toContain("PT");
@@ -28,11 +28,11 @@ describe("Header", () => {
   });
 
   it("keeps the localized detail path when switching from english to portuguese", () => {
-    mockPathname = "/en/blog/retry-e-idempotencia-em-filas";
+    mockPathname = "/en/blog/arquitetura-ai-content-engine";
 
     const html = renderToStaticMarkup(createElement(Header));
 
-    expect(html).toContain("href=\"/blog/retry-e-idempotencia-em-filas\"");
+    expect(html).toContain("href=\"/blog/arquitetura-ai-content-engine\"");
     expect(html).toContain("href=\"/en/blog\"");
     expect(html).toContain("Language");
     expect(html).toContain("Home");

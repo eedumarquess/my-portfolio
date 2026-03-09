@@ -10,7 +10,7 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const post = getPostBySlug(slug);
+  const post = getPostBySlug(slug, "pt");
 
   if (!post) {
     return { title: siteCopy.pt.blogPost.notFoundTitle };
@@ -23,7 +23,7 @@ export async function generateMetadata({
 }
 
 export function generateStaticParams() {
-  return getPostSlugs().map((slug) => ({ slug }));
+  return getPostSlugs("pt").map((slug) => ({ slug }));
 }
 
 export default async function PostPage({
@@ -32,7 +32,7 @@ export default async function PostPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const post = getPostBySlug(slug);
+  const post = getPostBySlug(slug, "pt");
 
   if (!post) {
     notFound();

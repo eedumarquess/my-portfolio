@@ -1,8 +1,9 @@
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
+import { type Locale } from "@/lib/site-content";
 
-const PROJECTS_DIR = path.join(process.cwd(), "content", "projects");
+const PROJECTS_DIR = path.join(process.cwd(), "novos-projetos");
 
 export type ProjectLinkKind = "demo" | "repository" | "article" | "external";
 
@@ -31,9 +32,14 @@ export interface Project extends ProjectMeta {
   content: string;
 }
 
+type ProjectFileEntry = {
+  slug: string;
+  fullPath: string;
+};
+
 function getString(data: Record<string, unknown>, key: string): string {
   const value = data[key];
-  return typeof value === "string" ? value : "";
+  return typeof value === "string" ? value.trim() : "";
 }
 
 function getStringArray(data: Record<string, unknown>, key: string): string[] {
@@ -79,25 +85,56 @@ function getLinks(data: Record<string, unknown>): ProjectLink[] {
     .filter((item): item is ProjectLink => item !== null);
 }
 
-export function getProjectSlugs(): string[] {
-  if (!fs.existsSync(PROJECTS_DIR)) return [];
-  return fs
-    .readdirSync(PROJECTS_DIR)
-    .filter((f) => f.endsWith(".md"))
-    .map((f) => f.replace(/\.md$/, ""));
+function getFallbackSlug(fileName: string): string {
+  return fileName
+    .replace(/\.md$/, "")
+    .replace(/^\d+-/, "")
+    .replace(/^project-/, "");
 }
 
-export function getProjectBySlug(slug: string): Project | null {
-  const fullPath = path.join(PROJECTS_DIR, `${slug}.md`);
-  if (!fs.existsSync(fullPath)) return null;
+function getProjectsDirectory(locale: Locale): string {
+  return path.join(PROJECTS_DIR, locale);
+}
 
-  const raw = fs.readFileSync(fullPath, "utf-8");
+function getProjectFileEntries(locale: Locale): ProjectFileEntry[] {
+  const projectsDirectory = getProjectsDirectory(locale);
+
+  if (!fs.existsSync(projectsDirectory)) {
+    return [];
+  }
+
+  return fs
+    .readdirSync(projectsDirectory)
+    .filter((fileName) => fileName.endsWith(".md"))
+    .sort((a, b) => a.localeCompare(b))
+    .map((fileName) => {
+      const fullPath = path.join(projectsDirectory, fileName);
+      const { data } = matter(fs.readFileSync(fullPath, "utf-8"));
+      const frontmatter = data as Record<string, unknown>;
+      const slug = getString(frontmatter, "slug") || getFallbackSlug(fileName);
+
+      return {
+        slug,
+        fullPath,
+      };
+    });
+}
+
+export function getProjectSlugs(locale: Locale): string[] {
+  return getProjectFileEntries(locale).map((entry) => entry.slug);
+}
+
+export function getProjectBySlug(slug: string, locale: Locale): Project | null {
+  const entry = getProjectFileEntries(locale).find((item) => item.slug === slug);
+  if (!entry) return null;
+
+  const raw = fs.readFileSync(entry.fullPath, "utf-8");
   const { data, content } = matter(raw);
   const frontmatter = data as Record<string, unknown>;
 
   return {
-    slug,
-    title: getString(frontmatter, "title") || slug,
+    slug: entry.slug,
+    title: getString(frontmatter, "title") || entry.slug,
     summary: getString(frontmatter, "summary"),
     coverImage: getString(frontmatter, "coverImage"),
     coverAlt: getString(frontmatter, "coverAlt"),
@@ -112,11 +149,10 @@ export function getProjectBySlug(slug: string): Project | null {
   };
 }
 
-export function getAllProjects(): ProjectMeta[] {
-  const slugs = getProjectSlugs();
-  const projects = slugs
-    .map((slug) => {
-      const project = getProjectBySlug(slug);
+export function getAllProjects(locale: Locale): ProjectMeta[] {
+  const projects = getProjectFileEntries(locale)
+    .map((entry) => {
+      const project = getProjectBySlug(entry.slug, locale);
       if (!project) return null;
 
       return {

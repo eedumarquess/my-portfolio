@@ -15,29 +15,29 @@ describe("site-content locale routing", () => {
     expect(getLocaleFromPathname("/")).toBe("pt");
     expect(getLocaleFromPathname("/blog")).toBe("pt");
     expect(getLocaleFromPathname("/en")).toBe("en");
-    expect(getLocaleFromPathname("/en/projects/exemplo")).toBe("en");
+    expect(getLocaleFromPathname("/en/projects/ai-content-engine")).toBe("en");
   });
 
   it("translates project paths between locales", () => {
     expect(getLocalizedPath("/projetos", "en")).toBe("/en/projects");
-    expect(getLocalizedPath("/projetos/exemplo", "en")).toBe(
-      "/en/projects/exemplo",
+    expect(getLocalizedPath("/projetos/ai-content-engine", "en")).toBe(
+      "/en/projects/ai-content-engine",
     );
     expect(getLocalizedPath("/en/projects", "pt")).toBe("/projetos");
-    expect(getLocalizedPath("/en/projects/exemplo", "pt")).toBe(
-      "/projetos/exemplo",
+    expect(getLocalizedPath("/en/projects/ai-content-engine", "pt")).toBe(
+      "/projetos/ai-content-engine",
     );
   });
 
   it("preserves home and blog paths when switching languages", () => {
     expect(getLocalizedPath("/", "en")).toBe("/en");
     expect(getLocalizedPath("/en", "pt")).toBe("/");
-    expect(getLocalizedPath("/blog/retry-e-idempotencia-em-filas", "en")).toBe(
-      "/en/blog/retry-e-idempotencia-em-filas",
+    expect(getLocalizedPath("/blog/arquitetura-ai-content-engine", "en")).toBe(
+      "/en/blog/arquitetura-ai-content-engine",
     );
     expect(
-      getLocalizedPath("/en/blog/retry-e-idempotencia-em-filas", "pt"),
-    ).toBe("/blog/retry-e-idempotencia-em-filas");
+      getLocalizedPath("/en/blog/arquitetura-ai-content-engine", "pt"),
+    ).toBe("/blog/arquitetura-ai-content-engine");
   });
 
   it("returns localized section roots", () => {
@@ -47,7 +47,9 @@ describe("site-content locale routing", () => {
   });
 
   it("marks navigation items as active for nested pages", () => {
-    expect(isCurrentPath("/en/projects/exemplo", "/en/projects")).toBe(true);
+    expect(isCurrentPath("/en/projects/ai-content-engine", "/en/projects")).toBe(
+      true,
+    );
     expect(isCurrentPath("/blog", "/")).toBe(false);
     expect(isCurrentPath("/", "/")).toBe(true);
   });
@@ -90,8 +92,9 @@ describe("site-content formatting", () => {
   });
 
   it("formats dates and reading time using the chosen locale", () => {
-    expect(formatDateForLocale("pt", "2025-02-18")).toContain("2025");
-    expect(formatDateForLocale("en", "2025-02-18")).toContain("2025");
+    expect(formatDateForLocale("pt", "2026-03-09")).toContain("2026");
+    expect(formatDateForLocale("en", "2026-03-09")).toContain("2026");
+    expect(formatDateForLocale("pt", "")).toBe("");
     expect(getReadingTimeLabel("pt", 4)).toBe("4 min de leitura");
     expect(getReadingTimeLabel("en", 4)).toBe("4 min read");
   });
@@ -101,7 +104,11 @@ describe("site-content formatting", () => {
     expect(siteCopy.en.home.secondaryCta.label).toContain("systems");
     expect(siteCopy.pt.blog.metaSeparator).toHaveLength(1);
     expect(siteCopy.pt.projectDetail.sections.role).toContain("Atua");
+    expect(siteCopy.pt.home.stackGroups[4]?.items).toContain("RAG");
+    expect(siteCopy.pt.home.stackGroups[4]?.items).toContain("Agentes");
     expect(siteCopy.pt.home.stackGroups[4]?.items).toContain("Codex");
+    expect(siteCopy.en.home.stackGroups[4]?.items).toContain("RAG");
+    expect(siteCopy.en.home.stackGroups[4]?.items).toContain("Agents");
     expect(siteCopy.en.home.stackGroups[4]?.items).toContain("Cursor");
     expect(siteCopy.pt.home.stackGroups[4]?.items).not.toContain("OpenAI");
     expect(siteCopy.en.home.stackGroups[4]?.items).not.toContain("Gemini");
