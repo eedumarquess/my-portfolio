@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import type { ReactNode } from "react";
 import { FocusNow } from "@/components/FocusNow";
 import { HomeLinks } from "@/components/HomeLinks";
 import { siteCopy, type Locale } from "@/lib/site-content";
@@ -13,6 +14,34 @@ const primaryCtaClassName =
 
 const secondaryCtaClassName =
   "interactive-chip inline-flex min-h-12 items-center justify-center rounded-full border border-[var(--line)] bg-[var(--card)] px-6 py-3 text-center text-sm font-semibold text-[var(--foreground)] hover:border-[var(--accent)] hover:text-[var(--accent)] hover:shadow-[0_18px_50px_-40px_rgba(15,118,110,0.38)] focus-visible:border-[var(--accent)] focus-visible:text-[var(--accent)] focus-visible:shadow-[0_18px_50px_-40px_rgba(15,118,110,0.38)] md:text-base";
+
+const macWindowClassName =
+  "interactive-elevated overflow-hidden rounded-[1.35rem] border border-black/10 bg-white shadow-[0_24px_60px_-40px_rgba(15,23,42,0.32)]";
+
+function MacWindowCard({
+  title,
+  children,
+  bodyClassName,
+}: {
+  title: string;
+  children: ReactNode;
+  bodyClassName?: string;
+}) {
+  return (
+    <div className={macWindowClassName}>
+      <div className="grid grid-cols-[auto_1fr_auto] items-center bg-[#d8d8d8] px-3 py-2.5">
+        <div className="flex items-center gap-2">
+          <span className="h-3.5 w-3.5 rounded-full bg-[#ed6a5f]" aria-hidden="true" />
+          <span className="h-3.5 w-3.5 rounded-full bg-[#f4bf4f]" aria-hidden="true" />
+          <span className="h-3.5 w-3.5 rounded-full bg-[#61c554]" aria-hidden="true" />
+        </div>
+        <p className="text-center text-base font-semibold text-black/90">{title}</p>
+        <span aria-hidden="true" className="block w-[58px]" />
+      </div>
+      <div className={`bg-white ${bodyClassName ?? ""}`.trim()}>{children}</div>
+    </div>
+  );
+}
 
 const stackIconUrls: Partial<Record<string, string>> = {
   "NestJS":
@@ -258,27 +287,29 @@ export function HomePageView({ locale }: HomePageViewProps) {
             </div>
           </div>
 
-          <aside className="interactive-elevated rounded-[2rem] border border-[var(--line)] bg-[var(--card)] p-5 shadow-[0_24px_80px_-60px_rgba(15,118,110,0.55)] md:p-6">
-            <div className="relative mx-auto aspect-square w-full max-w-[240px] overflow-hidden rounded-[1.75rem] bg-[var(--surface)] md:max-w-[260px]">
-              <Image
-                src="/hero-avatar.png"
-                alt={content.heroImageAlt}
-                fill
-                priority
-                className="object-cover object-center scale-[1.05]"
-                sizes="(max-width: 1024px) 280px, 360px"
-              />
-            </div>
+          <div className="space-y-5">
+            <MacWindowCard title="avatar.png" bodyClassName="px-5 pb-5 pt-3 md:px-6 md:pb-6">
+              <div className="relative mx-auto aspect-square w-full max-w-[240px] overflow-hidden rounded-[1.4rem] bg-[#ededed] md:max-w-[260px]">
+                <Image
+                  src="/hero-avatar.png"
+                  alt={content.heroImageAlt}
+                  fill
+                  priority
+                  className="object-cover object-center scale-[1.05]"
+                  sizes="(max-width: 1024px) 280px, 360px"
+                />
+              </div>
+            </MacWindowCard>
 
-            <div className="mt-5 rounded-[1.5rem] bg-[var(--surface)] p-5">
-              <p className="text-sm font-semibold uppercase tracking-[0.24em] text-[var(--accent)]">
-                {content.asideTitle}
-              </p>
-              <p className="mt-3 text-sm leading-7 text-[var(--foreground-muted)] md:text-base">
+            <MacWindowCard
+              title={content.asideTitle}
+              bodyClassName="px-5 pb-5 pt-3 md:px-6 md:pb-6"
+            >
+              <p className="text-sm leading-7 text-[var(--foreground-muted)] md:text-base">
                 {content.asideBody}
               </p>
-            </div>
-          </aside>
+            </MacWindowCard>
+          </div>
         </div>
       </section>
 
