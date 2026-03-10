@@ -221,7 +221,7 @@ export const siteCopy: Record<Locale, LocaleCopy> = {
       stackTitle:
         "Stack que entra na arquitetura, não só na bio.",
       stackDescription:
-        "Agrupei as ferramentas pelo tipo de sistema em que elas aparecem: backend transacional, mensageria, OCR, integrações e IA aplicada com RAG e agentes.",
+        "",
       stackGroups: [
         {
           title: "Backend",
@@ -250,9 +250,9 @@ export const siteCopy: Record<Locale, LocaleCopy> = {
       ],
       focus: {
         eyebrow: "Foco agora",
-        title: "O tipo de problema em que estou mais fundo agora",
+        title: "O tipo de problema em que estou atento agora",
         description:
-          "É o recorte atual do meu trabalho: sistemas com documento, fila, telemetria e guardrails suficientes para rodar em produção.",
+          "sistemas com documento, fila, telemetria e guardrails suficientes para rodar em produção.",
         bullets: [
           "Pipelines de documentos com OCR, classificação, validação e handoff para revisão humana quando a extração não fecha.",
           "Arquiteturas com retry, DLQ, idempotência e telemetria para filas que sustentam integrações e processamento assíncrono.",
